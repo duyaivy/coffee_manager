@@ -32,7 +32,6 @@ public class HoaDonBUS {
     public int getMaHoaDonMoiNhat() {
         return hoaDonDAO.getMaHoaDonMoiNhat();
     }
-
     public HoaDon getHoaDon(String maHD) {
         int ma = Integer.parseInt(maHD);
         for (HoaDon hd : listHoaDon) {

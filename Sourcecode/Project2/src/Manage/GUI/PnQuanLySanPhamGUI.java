@@ -7,7 +7,6 @@ import Manage.DTO.SanPham;
 
 import static Main.Main.changLNF;
 
-import MyCustom.XuLyFileExcel;
 import MyCustom.MyDialog;
 import MyCustom.MyFileChooser;
 import MyCustom.MyTable;
@@ -55,7 +54,7 @@ public class PnQuanLySanPhamGUI extends JPanel {
     DefaultTableModel dtmSanPham;
     JTextField txtMa, txtTen, txtsoLuong, txtdonViTinh, txtdonGia, txtTimKiem;
     JComboBox<String> cmbLoai;
-    JButton btnThem, btnSua, btnXoa, btnTim, btnChonAnh, btnReset, btnXuatExcel, btnNhapExcel;
+    JButton btnThem, btnSua, btnXoa, btnTim, btnChonAnh, btnReset;
     JLabel lblAnhSP;
 
     private void addControlsSanPham() {
@@ -183,24 +182,18 @@ public class PnQuanLySanPhamGUI extends JPanel {
         btnSua = new JButton("Lưu");
         btnXoa = new JButton("Xoá");
         btnTim = new JButton("Tìm kiếm");
-        btnXuatExcel = new JButton("Xuất");
-        btnNhapExcel = new JButton("Nhập");
-
+    
         Font fontButton = new Font("Times New Roman", Font.PLAIN, 16);
         btnThem.setFont(fontButton);
         btnSua.setFont(fontButton);
         btnXoa.setFont(fontButton);
         btnTim.setFont(fontButton);
-        btnXuatExcel.setFont(fontButton);
-        btnNhapExcel.setFont(fontButton);
-
+       
         btnThem.setIcon(new ImageIcon("image/add-icon.png"));
         btnSua.setIcon(new ImageIcon("image/Pencil-icon.png"));
         btnXoa.setIcon(new ImageIcon("image/delete-icon.png"));
         btnTim.setIcon(new ImageIcon("image/Search-icon.png"));
-        btnXuatExcel.setIcon(new ImageIcon("image/excel-icon.png"));
-        btnNhapExcel.setIcon(new ImageIcon("image/excel-icon.png"));
-
+        
         JPanel pnTimKiem = new TransparentPanel();
         JLabel lblTimKiem = new JLabel("Từ khoá tìm");
         lblTimKiem.setFont(font);
@@ -214,16 +207,14 @@ public class PnQuanLySanPhamGUI extends JPanel {
         pnButton.add(btnSua);
         pnButton.add(btnXoa);
         pnButton.add(btnTim);
-        pnButton.add(btnXuatExcel);
-        pnButton.add(btnNhapExcel);
+      
 
         Dimension btnSize = btnTim.getPreferredSize();
         btnThem.setPreferredSize(btnSize);
         btnSua.setPreferredSize(btnSize);
         btnXoa.setPreferredSize(btnSize);
         btnTim.setPreferredSize(btnSize);
-        btnXuatExcel.setPreferredSize(btnSize);
-        btnNhapExcel.setPreferredSize(btnSize);
+       
 
         this.add(pnButton);
 
@@ -350,49 +341,6 @@ public class PnQuanLySanPhamGUI extends JPanel {
                 xuLyTimKiem();
             }
         });
-        btnXuatExcel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                xuLyXuatFileExcel();
-            }
-        });
-        btnNhapExcel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                xuLyNhapFileExcel();
-            }
-        });
-    }
-
-    private void xuLyNhapFileExcel() {
-        MyDialog dlg = new MyDialog("Dữ liệu cũ sẽ bị xoá, tiếp tục?", MyDialog.WARNING_DIALOG);
-        if (dlg.getAction() != MyDialog.OK_OPTION) {
-            return;
-        }
-
-        XuLyFileExcel nhapFile = new XuLyFileExcel();
-        nhapFile.nhapExcel(tblSanPham);
-
-        int row = tblSanPham.getRowCount();
-        for (int i = 0; i < row; i++) {
-            String ten = tblSanPham.getValueAt(i, 1) + "";
-            String loai = tblSanPham.getValueAt(i, 2) + "";
-            String donGia = tblSanPham.getValueAt(i, 3) + "";
-            String soLuong = tblSanPham.getValueAt(i, 4) + "";
-            String donViTinh = tblSanPham.getValueAt(i, 5) + "";
-            String anh = tblSanPham.getValueAt(i, 6) + "";
-
-            spBUS.nhapSanPhamTuExcel(ten, loai, soLuong, donViTinh, anh, donGia);
-        }
-    }
-
-    private void xuLyXuatFileExcel() {
-        XuLyFileExcel xuatFile = new XuLyFileExcel();
-        xuatFile.xuatExcel(tblSanPham);
-    }
-
-    private void loadAnh(String anh) {
-        lblAnhSP.setIcon(getAnhSP(anh));
     }
 
     private void xuLyClickTblSanPham() {
@@ -423,7 +371,9 @@ public class PnQuanLySanPhamGUI extends JPanel {
             loadAnh("image/SanPham/" + anh);
         }
     }
-
+    private void loadAnh(String anh){
+        lblAnhSP.setIcon(getAnhSP(anh));
+    }
     private void loadDataLenBangSanPham() {
         spBUS.docListSanPham();
         dtmSanPham.setRowCount(0);

@@ -19,9 +19,9 @@ public class MyConnect {
 
         try {
             conn = DriverManager.getConnection(strConnect, userName, password);
-            System.out.println("✅ Kết nối thành công!");
+            System.out.println("✅ Ket noi thanh cong!");
         } catch (SQLException ex) {
-            new MyDialog("❌ Không kết nối được tới CSDL!\n" + ex.getMessage(), MyDialog.ERROR_DIALOG);
+            new MyDialog("❌ Khong ket noi duoc toi CSDL!\n" + ex.getMessage(), MyDialog.ERROR_DIALOG);
             System.exit(0);
         }
     }

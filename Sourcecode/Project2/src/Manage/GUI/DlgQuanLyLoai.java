@@ -63,7 +63,7 @@ public class DlgQuanLyLoai extends javax.swing.JDialog {
         setModal(true);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel1.setText("QUẢN LÝ LOẠI");
+        jLabel1.setText("QUẢN LÝ DANH MỤC");
         jPanel1.add(jLabel1);
 
         tblLoai.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N

@@ -40,8 +40,7 @@ public class PnQuanLyThongKeGUI extends JPanel {
     JLabel lblMon1, lblMon2, lblMon3, lblMon4, lblMon5, lblSoLuong1, lblSoLuong2, lblSoLuong3, lblSoLuong4, lblSoLuong5;
     private ChartPanel chartPanel;
     JPanel pnThongKeChiTiet, pnChart;
-    JButton btn_filter;
-
+ 
     private void addControls() {
         this.setLayout(new BorderLayout());
         this.setBackground(colorPanel);
@@ -149,11 +148,6 @@ public class PnQuanLyThongKeGUI extends JPanel {
         cmbNam.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         cmbNam.setBounds(w / 2 - 100 / 2, 560, 120, 35);
         pnThongKeTong.add(cmbNam);
-        
-        btn_filter = new JButton("Chi tiết");
-        btn_filter.setFont(new Font("Times New Roman", Font.PLAIN, 18));
-        btn_filter.setBounds((w / 2 - 100 / 2) + 140, 560, 100, 35);
-//        pnThongKeTong.add(btn_filter);
 
         JLabel lblBackgroundBang = new JLabel(new ImageIcon("image/ManagerUI/bangThongKe.png"));
         lblBackgroundBang.setBounds(98, 610, 834, 189);
@@ -273,13 +267,7 @@ public class PnQuanLyThongKeGUI extends JPanel {
                 hienThiThongKe();
             }
         });
-        btn_filter.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DlgLocThongKe dlg = new DlgLocThongKe();
-                dlg.setVisible(true);
-            }
-        });
+        
     }
 
     private void veLaiChart() {

@@ -1,6 +1,5 @@
 package Manage.GUI;
 
-import MyCustom.XuLyFileExcel;
 import MyCustom.MyDialog;
 import MyCustom.TransparentPanel;
 import MyCustom.MyTable;
@@ -50,7 +49,7 @@ public class PnQuanLyNhanVienGUI extends JPanel {
     JComboBox<String> cmbGioiTinh;
     MyTable tblNhanVien;
     DefaultTableModel dtmNhanVien;
-    JButton btnReset, btnThemNV, btnSuaNV, btnXoaNV, btnTimNV, btnCapTaiKhoan, btnResetMatKhau, btnXoaTaiKhoan, btnXuatExcel, btnNhapExcel;
+    JButton btnReset, btnThemNV, btnSuaNV, btnXoaNV, btnTimNV, btnCapTaiKhoan, btnResetMatKhau, btnXoaTaiKhoan;
 
     private void addControlsNhanVien() {
         this.setLayout(new BorderLayout());
@@ -198,38 +197,28 @@ public class PnQuanLyNhanVienGUI extends JPanel {
         btnSuaNV = new JButton("Lưu");
         btnXoaNV = new JButton("Xoá");
         btnTimNV = new JButton("Tìm kiếm");
-        btnXuatExcel = new JButton("Xuất");
-        btnNhapExcel = new JButton("Nhập");
 
         Font fontButton = new Font("Times New Roman", Font.PLAIN, 16);
         btnThemNV.setFont(fontButton);
         btnSuaNV.setFont(fontButton);
         btnXoaNV.setFont(fontButton);
         btnTimNV.setFont(fontButton);
-        btnXuatExcel.setFont(fontButton);
-        btnNhapExcel.setFont(fontButton);
 
         btnThemNV.setIcon(new ImageIcon("image/add-icon.png"));
         btnSuaNV.setIcon(new ImageIcon("image/Pencil-icon.png"));
         btnXoaNV.setIcon(new ImageIcon("image/delete-icon.png"));
         btnTimNV.setIcon(new ImageIcon("image/Search-icon.png"));
-        btnXuatExcel.setIcon(new ImageIcon("image/excel-icon.png"));
-        btnNhapExcel.setIcon(new ImageIcon("image/excel-icon.png"));
 
         pnButton.add(btnThemNV);
         pnButton.add(btnSuaNV);
         pnButton.add(btnXoaNV);
         pnButton.add(btnTimNV);
-        pnButton.add(btnXuatExcel);
-        pnButton.add(btnNhapExcel);
 
         Dimension btnSize = btnTimNV.getPreferredSize();
         btnThemNV.setPreferredSize(btnSize);
         btnSuaNV.setPreferredSize(btnSize);
         btnXoaNV.setPreferredSize(btnSize);
         btnTimNV.setPreferredSize(btnSize);
-        btnXuatExcel.setPreferredSize(btnSize);
-        btnNhapExcel.setPreferredSize(btnSize);
 
         JPanel pnButton2 = new TransparentPanel();
         btnCapTaiKhoan = new JButton("Cấp tài khoản");
@@ -461,19 +450,7 @@ public class PnQuanLyNhanVienGUI extends JPanel {
             }
         });
 
-        btnXuatExcel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                xuLyXuatExcel();
-            }
-        });
-
-        btnNhapExcel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                xuLyNhapExcel();
-            }
-        });
+     
 
         btnCapTaiKhoan.addActionListener(new ActionListener() {
             @Override
@@ -644,32 +621,6 @@ public class PnQuanLyNhanVienGUI extends JPanel {
         TaiKhoanBUS taiKhoanBUS = new TaiKhoanBUS();
         taiKhoanBUS.khoaTaiKhoan(txtMaNV.getText());
         loadDataTblNhanVien();
-    }
-
-    private void xuLyNhapExcel() {
-        MyDialog dlg = new MyDialog("Dữ liệu cũ sẽ bị xoá, tiếp tục?", MyDialog.WARNING_DIALOG);
-        if (dlg.getAction() != MyDialog.OK_OPTION) {
-            return;
-        }
-
-        XuLyFileExcel nhapExcel = new XuLyFileExcel();
-        nhapExcel.nhapExcel(tblNhanVien);
-
-        int row = tblNhanVien.getRowCount();
-        for (int i = 0; i < row; i++) {
-            String ho = tblNhanVien.getValueAt(i, 1) + "";
-            String ten = tblNhanVien.getValueAt(i, 2) + "";
-            String gioiTinh = tblNhanVien.getValueAt(i, 3) + "";
-            String chucVu = tblNhanVien.getValueAt(i, 4) + "";
-
-            nhanVienBUS.nhapExcel(ho, ten, gioiTinh, chucVu);
-
-        }
-    }
-
-    private void xuLyXuatExcel() {
-        XuLyFileExcel xuatExcel = new XuLyFileExcel();
-        xuatExcel.xuatExcel(tblNhanVien);
     }
 
     private void xuLyXoaNhanVien() {

@@ -45,6 +45,7 @@ public class XuatHoaDonGUI extends JDialog {
         this.nhanVien = (String) nhanVien;
         DecimalFormat dcf = new DecimalFormat("###,###");
         txtTongTien.setText(dcf.format(tongTien));
+         xuLyXemTruocHoaDon();
     }
 
     private void customEvents() {
@@ -84,7 +85,59 @@ public class XuatHoaDonGUI extends JDialog {
             btnThanhToan.setEnabled(false);
         }
     }
+    private void xuLyXemTruocHoaDon(){
+        txtHoaDon.setContentType("text/html");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        DecimalFormat dcf = new DecimalFormat("###,### VND");
 
+        String hd = "<style> "
+                + "table {"
+                + "border: 1px solid;"
+                + "border-bottom: none"
+                + "}"
+                + "tr {"
+                + "border-bottom: 1px solid;"
+                + "}"
+                + "td {"
+                + "padding: 8px;"
+                + "} "
+                + "th {"
+                + "font-size:16pt"
+                + "}"
+                + "</style>";
+        hd += "<h1 style='text-align:center;'>XEM TRƯỚC HOÁ ĐƠN</h1>";
+        hd += "<div style='text-align:center'>";
+        hd += "<table style='max-width:100%'>";
+        hd += "<tr>"
+                + "<th>Mã SP</th>"
+                + "<th>Tên SP</th>"
+                + "<th>Số lượng</th>"
+                + "<th>Đơn giá</th>"
+                + "<th>Thành tiền</th>"
+                + "</tr>";
+        for (Vector vec : dsGioHang) {
+            hd += "<tr>";
+            hd += "<td style='text-align:center;'>" + vec.get(0) + "</td>";
+            hd += "<td style='text-align:left;'>" + vec.get(1) + "</td>";
+            hd += "<td style='text-align:center;'>" + vec.get(2) + "</td>";
+            hd += "<td style='text-align:center;'>" + vec.get(3) + "</td>";
+            hd += "<td style='text-align:center;'>" + vec.get(4) + "</td>";
+            hd += "</tr>";
+        }
+        hd += "<tr>";
+        hd += "<td style='text-align:center;'>" + "</td>";
+        hd += "<td style='text-align:left;'>" + "</td>";
+        hd += "<td style='text-align:center;'>" + "</td>";
+        hd += "<td style='text-align:center;font-weight:bold'>Tổng cộng</td>";
+        hd += "<td style='text-align:center;'>" + dcf.format(tongTien) + "</td>";
+        hd += "</tr>";
+        hd += "</table>";
+        hd += "</div>";
+        hd += "<div style='text-align:center;'>==========================================</div><br/>";
+        txtHoaDon.setText(hd);
+        txtTongTien.setText(dcf.format(tongTien));
+    }
     private void xuLyHienThiHoaDon() {
         txtHoaDon.setContentType("text/html");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
@@ -107,9 +160,9 @@ public class XuatHoaDonGUI extends JDialog {
                 + "}"
                 + "</style>";
         hd += "<h1 style='text-align:center;'>HOÁ ĐƠN THANH TOÁN</h1>";
-        hd += "Nhân viên: " + nhanVien + "<br/>";
-        hd += "Ngày lập: " + dtf.format(now) + "<br/>";
-        hd += "Khách hàng: " + txtTenKhach.getText() + "<br/>";
+        hd += "<p style='margin-left:50px;'>Nhân viên: " + nhanVien + "</p><br/>";
+        hd += "<p style='margin-left:50px;'> Ngày lập: " + dtf.format(now) + "</p><br/>";
+        hd += "<p style='margin-left:50px;'>Khách hàng: " + txtTenKhach.getText() + "</p><br/>";
         hd += "<div style='text-align:center;'>==========================================</div><br/>";
         hd += "<div style='text-align:center'>";
         hd += "<table style='max-width:100%'>";
@@ -194,8 +247,8 @@ public class XuatHoaDonGUI extends JDialog {
         jLabel5.setText("jLabel5");
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 153, 255));
-        jLabel1.setText("Chi tiết hoá đơn");
+        jLabel1.setForeground(new java.awt.Color(0, 51, 255));
+        jLabel1.setText("XUẤT HOÁ ĐƠN");
         jPanel1.add(jLabel1);
 
         btnThanhToan.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
@@ -221,6 +274,7 @@ public class XuatHoaDonGUI extends JDialog {
         jPanel2.add(btnInHoaDon);
 
         txtHoaDon.setEditable(false);
+        txtHoaDon.setName(""); // NOI18N
         jScrollPane1.setViewportView(txtHoaDon);
 
         txtTenKhach.setEditable(false);

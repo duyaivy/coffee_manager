@@ -54,7 +54,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="24" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="QU&#x1ea2;N L&#xdd; LO&#x1ea0;I"/>
+            <Property name="text" type="java.lang.String" value="QU&#x1ea2;N L&#xdd; DANH M&#x1ee4;C"/>
           </Properties>
         </Component>
       </SubComponents>

@@ -100,9 +100,9 @@
               <Font name="Times New Roman" size="36" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="99" red="33" type="rgb"/>
+              <Color blue="ff" green="33" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Chi ti&#x1ebf;t ho&#xe1; &#x111;&#x1a1;n"/>
+            <Property name="text" type="java.lang.String" value="XU&#x1ea4;T HO&#xc1; &#x110;&#x1a0;N"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -153,6 +153,7 @@
         <Component class="javax.swing.JEditorPane" name="txtHoaDon">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="name" type="java.lang.String" value="" noResource="true"/>
           </Properties>
         </Component>
       </SubComponents>
