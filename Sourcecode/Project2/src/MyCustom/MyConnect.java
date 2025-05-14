@@ -9,9 +9,9 @@ public class MyConnect {
     public static Connection conn = null;
 
     private final String serverName = "127.0.0.1";
-    private final String dbName = "coffeeshop";
+    private final String dbName = "test_coffe";
     private final String userName = "root";
-    private final String password = "Password@123";
+    private final String password = "tamnhu";
 
     public MyConnect() {
         String strConnect = "jdbc:mysql://" + serverName + ":3306/" + dbName
