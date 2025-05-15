@@ -164,10 +164,10 @@ public class PnQuanLyNhanVienGUI extends JPanel {
         btnXoaNV.setFont(fontButton);
         btnTimNV.setFont(fontButton);
 
-        btnThemNV.setIcon(new ImageIcon("image/add-icon.png"));
-        btnSuaNV.setIcon(new ImageIcon("image/Pencil-icon.png"));
-        btnXoaNV.setIcon(new ImageIcon("image/delete-icon.png"));
-        btnTimNV.setIcon(new ImageIcon("image/Search-icon.png"));
+//        btnThemNV.setIcon(new ImageIcon("image/add-icon.png"));
+//        btnSuaNV.setIcon(new ImageIcon("image/Pencil-icon.png"));
+//        btnXoaNV.setIcon(new ImageIcon("image/delete-icon.png"));
+//        btnTimNV.setIcon(new ImageIcon("image/Search-icon.png"));
 
         pnButton.add(btnThemNV);
         pnButton.add(btnSuaNV);
@@ -184,9 +184,9 @@ public class PnQuanLyNhanVienGUI extends JPanel {
         btnCapTaiKhoan = new JButton("Cấp tài khoản");
         btnResetMatKhau = new JButton("Mật khẩu");
         btnXoaTaiKhoan = new JButton("Khoá tài khoản");
-        btnCapTaiKhoan.setIcon(new ImageIcon("image/icons8_man_with_key_32px.png"));
-        btnResetMatKhau.setIcon(new ImageIcon("image/icons8_password_reset_32px.png"));
-        btnXoaTaiKhoan.setIcon(new ImageIcon("image/icons8_denied_32px.png"));
+//        btnCapTaiKhoan.setIcon(new ImageIcon("image/icons8_man_with_key_32px.png"));
+//        btnResetMatKhau.setIcon(new ImageIcon("image/icons8_password_reset_32px.png"));
+//        btnXoaTaiKhoan.setIcon(new ImageIcon("image/icons8_denied_32px.png"));
         btnCapTaiKhoan.setFont(fontButton);
         btnResetMatKhau.setFont(fontButton);
         btnXoaTaiKhoan.setFont(fontButton);
