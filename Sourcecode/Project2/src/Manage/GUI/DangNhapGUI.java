@@ -70,18 +70,18 @@ public class DangNhapGUI extends JFrame {
 
         Font fontTXT = new Font("Times New Roman", Font.BOLD, 18);
         txtUser = new JTextField();
-        txtUser.setBackground(Color.BLACK);
+        txtUser.setBackground(Color.WHITE);
         txtUser.setBorder(BorderFactory.createEmptyBorder());
-        txtUser.setForeground(Color.WHITE);
+        txtUser.setForeground(Color.BLACK);
         txtUser.setFont(fontTXT);
         txtUser.setHorizontalAlignment(JTextField.LEFT);
         txtUser.setBounds(36, 302, 370, 50);
 
         txtPassword = new JPasswordField();
         txtPassword.setEchoChar('•');
-        txtPassword.setBackground(Color.BLACK);;
+        txtPassword.setBackground(Color.WHITE);;
         txtPassword.setBorder(BorderFactory.createEmptyBorder());
-        txtPassword.setForeground(Color.WHITE);
+        txtPassword.setForeground(Color.BLACK);
         txtPassword.setFont(fontTXT);
         txtPassword.setHorizontalAlignment(JTextField.LEFT);
         txtPassword.setBounds(36, 401, 370, 50);

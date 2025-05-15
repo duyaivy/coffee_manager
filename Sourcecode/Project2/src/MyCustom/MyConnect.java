@@ -9,7 +9,7 @@ public class MyConnect {
     public static Connection conn = null;
 
     private final String serverName = "127.0.0.1";
-    private final String dbName = "test_coffe";
+    private final String dbName = "coffeshop";
     private final String userName = "root";
     private final String password = "tamnhu";
 
