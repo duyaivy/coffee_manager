@@ -30,6 +30,16 @@ import javax.swing.table.*;
 import javax.swing.text.*;
 
 public class PnQuanLyBanHangGUI extends JPanel {
+    private final Color DARK_GREEN = new Color(0x09A603);
+    private final Color MEDIUM_GREEN = new Color(0x078C03);
+    private final Color GOLD = new Color(0xF2B705);
+    private final Color LIGHT_YELLOW = new Color(0xF2D479);
+    private final Color DARK_GOLD = new Color(0xD98E04);
+    private final Color MACARON = new Color(0xc8b4ba);
+    private final Color LIGHT_GREEN = new Color(0xc1cd97);
+    private final Color PINK = new Color(0xe18d96);
+    private final Color LIGHT_GOLD = new Color(0xF3DDB3);
+    private final Color GRAY = new Color(0x909090);
 
     private SanPhamBUS spBUS = new SanPhamBUS();
     private NhanVienBUS nvBUS = new NhanVienBUS();
@@ -39,7 +49,7 @@ public class PnQuanLyBanHangGUI extends JPanel {
     JLabel lblTabbedBanHang, lblTabbedHoaDon;
     final ImageIcon tabbedSelected = new ImageIcon("image/ManagerUI/tabbed-btn--selected.png");
     final ImageIcon tabbedDefault = new ImageIcon("image/ManagerUI/tabbed-btn.png");
-    final Color colorPanel = new Color(247, 247, 247);
+    final Color colorPanel = GRAY;
     CardLayout cardBanHangGroup = new CardLayout();
     JPanel pnCardTabBanHang;
     MyTable tblBanHang, tblGioHang;
@@ -285,7 +295,7 @@ public class PnQuanLyBanHangGUI extends JPanel {
         JPanel pnAnhSanPham = new TransparentPanel();
         pnAnhSanPham.setPreferredSize(new Dimension((int) pnThongTinBanHang.getPreferredSize().getWidth(), 220));
         lblAnhSP = new JLabel();
-        lblAnhSP.setBorder(BorderFactory.createLineBorder(Color.gray));
+        lblAnhSP.setBorder(BorderFactory.createLineBorder(Color.GRAY));
         lblAnhSP.setPreferredSize(new Dimension(200, 200));
         pnAnhSanPham.add(lblAnhSP);
 

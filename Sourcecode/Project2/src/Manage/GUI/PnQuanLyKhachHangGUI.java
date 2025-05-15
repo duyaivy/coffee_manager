@@ -10,7 +10,6 @@ import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,160 +40,117 @@ public class PnQuanLyKhachHangGUI extends JPanel {
     DefaultTableModel dtmKhachHang;
 
     private void addControls() {
-        Font font = new Font("Times New Roman", Font.PLAIN, 20);
+        Font font = new Font("Segoe UI", Font.PLAIN, 14);
+        Font headerFont = new Font("Segoe UI", Font.BOLD, 18);
 
-        this.setLayout(new BorderLayout());
+        this.setLayout(new BorderLayout(10, 10));
         this.setBackground(colorPanel);
-        int w = 1030;
-        int h = 844;
+        this.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
 
-        /*
-        =========================================================================
-                                    PANEL KHÁCH HÀNG
-        =========================================================================
-         */
-        JPanel pnKhachHang = new TransparentPanel();
-        pnKhachHang.setLayout(new BoxLayout(pnKhachHang, BoxLayout.Y_AXIS));
+        // ==================== PANEL CHÍNH ====================
+        JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
+        mainPanel.setBackground(colorPanel);
 
-        JPanel pnTopKH = new TransparentPanel();
-        pnTopKH.setLayout(new BoxLayout(pnTopKH, BoxLayout.Y_AXIS));
-
-        JPanel pnTitle = new TransparentPanel();
-        JLabel lblTitle = new JLabel("<html><h1>QUẢN LÝ KHÁCH HÀNG</h1></html>");
+        // ==================== PANEL TIÊU ĐỀ ====================
+        JPanel pnTitle = new JPanel(new BorderLayout());
+        pnTitle.setBackground(colorPanel);
+        
+        JLabel lblTitle = new JLabel("QUẢN LÝ KHÁCH HÀNG");
+        lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 24));
+        lblTitle.setBorder(BorderFactory.createEmptyBorder(0, 0, 15, 0));
+        
         btnReset = new JButton(new ImageIcon("image/Refresh-icon.png"));
+        btnReset.setToolTipText("Làm mới");
         btnReset.setPreferredSize(new Dimension(40, 40));
-        pnTitle.add(lblTitle);
-        pnTitle.add(btnReset);
-        pnTopKH.add(pnTitle);
+        
+        pnTitle.add(lblTitle, BorderLayout.WEST);
+        pnTitle.add(btnReset, BorderLayout.EAST);
+        
+        mainPanel.add(pnTitle, BorderLayout.NORTH);
 
-        //======PANEL TEXT FIELD=======
-        JPanel pnTextField = new TransparentPanel();
-        pnTextField.setLayout(new BoxLayout(pnTextField, BoxLayout.Y_AXIS));
+        // ==================== PANEL THÔNG TIN ====================
+        JPanel pnInfo = new JPanel();
+        pnInfo.setLayout(new BoxLayout(pnInfo, BoxLayout.Y_AXIS));
+        pnInfo.setBackground(colorPanel);
+        pnInfo.setBorder(BorderFactory.createTitledBorder("Thông tin khách hàng"));
 
-        JLabel lblMa, lblHo, lblTen, lblGioiTinh, lblTongChiTieu;
-        lblMa = new JLabel("Mã Khách hàng");
-        lblHo = new JLabel("Họ đệm");
-        lblTen = new JLabel("Tên");
-        lblGioiTinh = new JLabel("Giới tính");
-        lblTongChiTieu = new JLabel("Tổng chi tiêu");
+        // Nhóm các trường thông tin
+        JPanel pnFields = new JPanel(new GridLayout(3, 2, 10, 10));
+        pnFields.setBackground(colorPanel);
 
-        lblMa.setFont(font);
-        lblHo.setFont(font);
-        lblTen.setFont(font);
-        lblGioiTinh.setFont(font);
-        lblTongChiTieu.setFont(font);
-
-        txtMa = new JTextField(20);
+        // Dòng 1: Mã KH và Họ đệm
+        JPanel pnMa = createFieldPanel("Mã KH", txtMa = new JTextField());
         txtMa.setEditable(false);
-        txtHo = new JTextField(20);
-        txtTen = new JTextField(20);
-        txtTongChiTieu = new JTextField(20);
-        txtTongChiTieu.setEditable(false);
+        JPanel pnHo = createFieldPanel("Họ đệm", txtHo = new JTextField());
+        pnFields.add(pnMa);
+        pnFields.add(pnHo);
+
+        // Dòng 2: Tên và Giới tính
+        JPanel pnTen = createFieldPanel("Tên", txtTen = new JTextField());
         cmbGioiTinh = new JComboBox<>();
         cmbGioiTinh.addItem("Chọn giới tính");
         cmbGioiTinh.addItem("Nam");
         cmbGioiTinh.addItem("Nữ");
+        JPanel pnGioiTinh = createFieldPanel("Giới tính", cmbGioiTinh);
+        pnFields.add(pnTen);
+        pnFields.add(pnGioiTinh);
 
-        txtMa.setFont(font);
-        txtHo.setFont(font);
-        txtTen.setFont(font);
-        txtTongChiTieu.setFont(font);
-        cmbGioiTinh.setFont(font);
+        // Dòng 3: Tổng chi tiêu
+        JPanel pnTongChiTieu = createFieldPanel("Tổng chi tiêu", txtTongChiTieu = new JTextField());
+        txtTongChiTieu.setEditable(false);
+        pnFields.add(pnTongChiTieu);
+        pnFields.add(new JPanel()); // Placeholder
 
-        JPanel pnMa = new TransparentPanel();
-        pnMa.add(lblMa);
-        pnMa.add(txtMa);
-        pnTextField.add(pnMa);
+        pnInfo.add(pnFields);
 
-        JPanel pnHo = new TransparentPanel();
-        pnHo.add(lblHo);
-        pnHo.add(txtHo);
-        pnTextField.add(pnHo);
-
-        JPanel pnTen = new TransparentPanel();
-        pnTen.add(lblTen);
-        pnTen.add(txtTen);
-        pnTextField.add(pnTen);
-
-        JPanel pnGioiTinh = new TransparentPanel();
-        pnGioiTinh.add(lblGioiTinh);
-        pnGioiTinh.add(cmbGioiTinh);
-        pnTextField.add(pnGioiTinh);
-
-        JPanel pnTongChiTieu = new TransparentPanel();
-        pnTongChiTieu.add(lblTongChiTieu);
-        pnTongChiTieu.add(txtTongChiTieu);
-        pnTextField.add(pnTongChiTieu);
-
-        Dimension lblSize = lblMa.getPreferredSize();
-        lblMa.setPreferredSize(lblSize);
-        lblHo.setPreferredSize(lblSize);
-        lblTen.setPreferredSize(lblSize);
-        lblGioiTinh.setPreferredSize(lblSize);
-        lblTongChiTieu.setPreferredSize(lblSize);
-        cmbGioiTinh.setPreferredSize(txtHo.getPreferredSize());
-
-        pnTopKH.add(pnTextField);
-        pnKhachHang.add(pnTopKH);
-
-        //===============PANEL BUTTON=============
-        JPanel pnButton = new TransparentPanel();
-        btnThem = new JButton("Thêm");
-        btnSua = new JButton("Lưu");
-        btnXoa = new JButton("Xoá");
-
-        btnThem.setIcon(new ImageIcon("image/add-icon.png"));
-        btnSua.setIcon(new ImageIcon("image/Pencil-icon.png"));
-        btnXoa.setIcon(new ImageIcon("image/delete-icon.png"));
-        Font fontButton = new Font("Times New Roman", Font.PLAIN, 16);
-
-        btnThem.setFont(fontButton);
-        btnSua.setFont(fontButton);
-        btnXoa.setFont(fontButton);
-        pnKhachHang.add(pnButton);
-
+        // ==================== PANEL NÚT CHỨC NĂNG ====================
+        JPanel pnButton = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 5));
+        pnButton.setBackground(colorPanel);
+        
+        btnThem = createButton("Thêm", "image/add-icon.png");
+        btnSua = createButton("Lưu", "image/Pencil-icon.png");
+        btnXoa = createButton("Xoá", "image/delete-icon.png");
+        
         pnButton.add(btnThem);
         pnButton.add(btnSua);
         pnButton.add(btnXoa);
+        
+        pnInfo.add(pnButton);
+        mainPanel.add(pnInfo, BorderLayout.WEST);
 
-        btnThem.setIcon(new ImageIcon("image/add-icon.png"));
-        btnSua.setIcon(new ImageIcon("image/Pencil-icon.png"));
-        btnXoa.setIcon(new ImageIcon("image/delete-icon.png"));
-        Dimension btnSize = btnThem.getPreferredSize();
-        btnThem.setPreferredSize(btnSize);
-        btnSua.setPreferredSize(btnSize);
-        btnXoa.setPreferredSize(btnSize);
+        // ==================== PANEL TÌM KIẾM ====================
+        JPanel pnSearch = new JPanel();
+        pnSearch.setLayout(new BoxLayout(pnSearch, BoxLayout.Y_AXIS));
+        pnSearch.setBackground(colorPanel);
+        pnSearch.setBorder(BorderFactory.createTitledBorder("Tìm kiếm"));
 
-        //====PANEL SEARCH=====
-        JPanel pnTimKiem = new TransparentPanel();
-        JLabel lblTimKiem = new JLabel("Từ khoá tìm");
-        lblTimKiem.setFont(font);
+        // Tìm kiếm theo từ khóa
+        JPanel pnTimKiem = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
+        pnTimKiem.setBackground(colorPanel);
+        pnTimKiem.add(new JLabel("Từ khoá:"));
         txtTukhoa = new JTextField(20);
-        txtTukhoa.setFont(font);
-        pnTimKiem.add(lblTimKiem);
         pnTimKiem.add(txtTukhoa);
-        pnKhachHang.add(pnTimKiem);
+        pnSearch.add(pnTimKiem);
 
-        JPanel pnTimGioiHan = new TransparentPanel();
-        JLabel lblMin = new JLabel("Chi tiêu từ:");
-        JLabel lblMax = new JLabel("đến:");
-        lblMin.setFont(font);
-        lblMax.setFont(font);
-        txtMinchiTieu = new JTextField(5);
-        txtMinchiTieu.setHorizontalAlignment(JTextField.CENTER);
-        txtMaxChiTieu = new JTextField(5);
-        txtMaxChiTieu.setHorizontalAlignment(JTextField.CENTER);
-        txtMinchiTieu.setFont(font);
-        txtMaxChiTieu.setFont(font);
-        btnTim = new JButton(new ImageIcon("image/Search-icon.png"));
-        btnTim = new JButton(new ImageIcon("image/Search-icon.png"));
-        pnTimGioiHan.add(lblMin);
+        // Tìm kiếm theo khoảng chi tiêu
+        JPanel pnTimGioiHan = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 5));
+        pnTimGioiHan.setBackground(colorPanel);
+        pnTimGioiHan.add(new JLabel("Chi tiêu từ:"));
+        txtMinchiTieu = new JTextField(10);
+        txtMinchiTieu.setHorizontalAlignment(JTextField.RIGHT);
         pnTimGioiHan.add(txtMinchiTieu);
-        pnTimGioiHan.add(lblMax);
+        pnTimGioiHan.add(new JLabel("đến:"));
+        txtMaxChiTieu = new JTextField(10);
+        txtMaxChiTieu.setHorizontalAlignment(JTextField.RIGHT);
         pnTimGioiHan.add(txtMaxChiTieu);
+        btnTim = createButton("", "image/Search-icon.png");
+        btnTim.setToolTipText("Tìm kiếm");
         pnTimGioiHan.add(btnTim);
-        pnKhachHang.add(pnTimGioiHan);
-        //=========================TABLE=====================
+        pnSearch.add(pnTimGioiHan);
+
+        mainPanel.add(pnSearch, BorderLayout.CENTER);
+
+        // ==================== PANEL BẢNG DỮ LIỆU ====================
         dtmKhachHang = new DefaultTableModel();
         dtmKhachHang.addColumn("Mã KH");
         dtmKhachHang.addColumn("Họ đệm");
@@ -203,16 +159,49 @@ public class PnQuanLyKhachHangGUI extends JPanel {
         dtmKhachHang.addColumn("Tổng chi tiêu");
 
         tblKhachHang = new MyTable(dtmKhachHang);
+        tblKhachHang.setRowHeight(30);
+        tblKhachHang.setFont(font);
+        tblKhachHang.getTableHeader().setFont(headerFont);
 
         JScrollPane scrtblKhachHang = new JScrollPane(tblKhachHang);
-
-        this.add(pnKhachHang, BorderLayout.NORTH);
-        this.add(scrtblKhachHang, BorderLayout.CENTER);
+        scrtblKhachHang.setBorder(BorderFactory.createTitledBorder("Danh sách khách hàng"));
+        
+        mainPanel.add(scrtblKhachHang, BorderLayout.SOUTH);
+        this.add(mainPanel);
 
         loadDataLenTableKhachHang();
     }
 
+    private JPanel createFieldPanel(String label, Component field) {
+        JPanel panel = new JPanel(new BorderLayout(5, 5));
+        panel.setBackground(colorPanel);
+        
+        JLabel lbl = new JLabel(label);
+        lbl.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        panel.add(lbl, BorderLayout.WEST);
+        
+        field.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        if (field instanceof JTextField) {
+            ((JTextField)field).setPreferredSize(new Dimension(200, 30));
+        } else if (field instanceof JComboBox) {
+            ((JComboBox<?>)field).setPreferredSize(new Dimension(200, 30));
+        }
+        panel.add(field, BorderLayout.CENTER);
+        
+        return panel;
+    }
+
+    private JButton createButton(String text, String iconPath) {
+        JButton button = new JButton(text, new ImageIcon(iconPath));
+        button.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        button.setPreferredSize(new Dimension(100, 35));
+        button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        return button;
+    }
+
+    // Các phương thức còn lại giữ nguyên như cũ
     private void addEvents() {
+        // Giữ nguyên toàn bộ phần addEvents() như cũ
         btnReset.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

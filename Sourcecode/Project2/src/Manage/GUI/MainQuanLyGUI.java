@@ -10,6 +10,16 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class MainQuanLyGUI extends JFrame {
+    private final Color DARK_GREEN = new Color(0x09A603);
+    private final Color MEDIUM_GREEN = new Color(0x078C03);
+    private final Color GOLD = new Color(0xF2B705);
+    private final Color LIGHT_YELLOW = new Color(0xF2D479);
+    private final Color DARK_GOLD = new Color(0xD98E04);
+    private final Color MACARON = new Color(0xc8b4ba);
+    private final Color LIGHT_GREEN = new Color(0xc1cd97);
+    private final Color PINK = new Color(0xe18d96);
+    private final Color LIGHT_GOLD = new Color(0xF3DDB3);
+    private final Color GRAY = new Color(0x909090);
 
     public MainQuanLyGUI() {
         this.setTitle("Phần mềm quản lý bán hàng");
@@ -37,9 +47,9 @@ public class MainQuanLyGUI extends JFrame {
     PnQuanLyThongKeGUI thongKePanel;
 
     JLabel btnClose, btnMinimize, lblBanHang, lblKhuyenMai, lblSanPham, lblNhanVien, lblKhachHang, lblThongKe;
-    final Color clLeftItem = new Color(179, 163, 137);
-    final Color clLeftItemHover = new Color(209, 185, 143);
-    final Color clLeftItemSelected = new Color(232, 195, 115);
+    final Color clLeftItem = LIGHT_YELLOW;
+    final Color clLeftItemHover = LIGHT_GOLD;
+    final Color clLeftItemSelected = PINK;
     ArrayList<JLabel> listMenuLeft;
     CardLayout cardMenuLeftGroup = new CardLayout();
 
@@ -59,7 +69,7 @@ public class MainQuanLyGUI extends JFrame {
          */
         pnTitle = new JPanel(null);
         pnTitle.setPreferredSize(new Dimension(width, 46));
-        pnTitle.setBackground(new Color(159, 145, 121));
+        pnTitle.setBackground(DARK_GOLD);
 
         btnDoiMatKhau = new JLabel(new ImageIcon("image/ManagerUI/icons8_gear_46px.png"));
         btnDoiMatKhau.setToolTipText("Đổi mật khẩu");

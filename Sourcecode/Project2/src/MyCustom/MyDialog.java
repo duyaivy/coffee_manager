@@ -7,6 +7,17 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class MyDialog extends JDialog {
+    private final Color DARK_GREEN = new Color(0x09A603);
+    private final Color MEDIUM_GREEN = new Color(0x078C03);
+    private final Color GOLD = new Color(0xF2B705);
+    private final Color LIGHT_YELLOW = new Color(0xF2D479);
+    private final Color DARK_GOLD = new Color(0xD98E04);
+    private final Color MACARON = new Color(0xc8b4ba);
+    private final Color LIGHT_GREEN = new Color(0xc1cd97);
+    private final Color PINK = new Color(0xe18d96);
+    private final Color LIGHT_GOLD = new Color(0xF3DDB3);
+    private final Color GRAY = new Color(0x909090);
+    private final Color RED = new Color(0xff6961);
 
     private String content;
     private int type;
@@ -90,7 +101,7 @@ public class MyDialog extends JDialog {
         Color backgroundHeader = new Color(0);
         switch (type) {
             case ERROR_DIALOG:
-                backgroundHeader = new Color(178, 34, 34);
+                backgroundHeader = RED;
                 lblIcon.setIcon(iconError);
                 break;
             case SUCCESS_DIALOG:
