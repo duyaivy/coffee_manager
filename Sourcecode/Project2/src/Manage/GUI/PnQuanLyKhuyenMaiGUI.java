@@ -40,7 +40,7 @@ public class PnQuanLyKhuyenMaiGUI extends JPanel {
     JDateChooser dateBD, dateKT;
 
     private void addControls() {
-        Font font = new Font("Times New Roman", Font.PLAIN, 24);
+        Font font = new Font("Times New Roman", Font.PLAIN, 20);
         this.setLayout(new BorderLayout());
         this.setBackground(colorPanel);
 

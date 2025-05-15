@@ -4,19 +4,13 @@ import Manage.BUS.LoaiBUS;
 import Manage.BUS.SanPhamBUS;
 import Manage.DTO.LoaiSP;
 import Manage.DTO.SanPham;
-
 import static Main.Main.changLNF;
-
 import MyCustom.MyDialog;
 import MyCustom.MyFileChooser;
 import MyCustom.MyTable;
 import MyCustom.TransparentPanel;
-
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -24,20 +18,9 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
+import javax.swing.table.*;
 
 public class PnQuanLySanPhamGUI extends JPanel {
 
@@ -91,13 +74,13 @@ public class PnQuanLySanPhamGUI extends JPanel {
         lblDonViTinh = new JLabel("Đơn vị tính");
         lblDonGia = new JLabel("Đơn giá");
 
-        txtMa = new JTextField(15);
+        txtMa = new JTextField(25);
         txtMa.setEditable(false);
-        txtTen = new JTextField(15);
+        txtTen = new JTextField(25);
         cmbLoai = new JComboBox<String>();
-        txtsoLuong = new JTextField(15);
-        txtdonViTinh = new JTextField(15);
-        txtdonGia = new JTextField(15);
+        txtsoLuong = new JTextField(25);
+        txtdonViTinh = new JTextField(25);
+        txtdonGia = new JTextField(25);
 
         JPanel pnMa = new TransparentPanel();
         lblMa.setFont(font);
@@ -182,17 +165,12 @@ public class PnQuanLySanPhamGUI extends JPanel {
         btnSua = new JButton("Lưu");
         btnXoa = new JButton("Xoá");
         btnTim = new JButton("Tìm kiếm");
-    
+        
         Font fontButton = new Font("Times New Roman", Font.PLAIN, 16);
         btnThem.setFont(fontButton);
         btnSua.setFont(fontButton);
         btnXoa.setFont(fontButton);
         btnTim.setFont(fontButton);
-       
-//        btnThem.setIcon(new ImageIcon("image/add-icon.png"));
-//        btnSua.setIcon(new ImageIcon("image/Pencil-icon.png"));
-//        btnXoa.setIcon(new ImageIcon("image/delete-icon.png"));
-//        btnTim.setIcon(new ImageIcon("image/Search-icon.png"));
         
         JPanel pnTimKiem = new TransparentPanel();
         JLabel lblTimKiem = new JLabel("Từ khoá tìm");

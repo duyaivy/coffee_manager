@@ -24,25 +24,6 @@ public class DangNhapGUI extends JFrame {
         addEvents();
     }
 
-//   private void xuLyTaiKhoanDaGhiNho() {
-//    DangNhapBUS dangNhapBUS = new DangNhapBUS();
-//    String line = dangNhapBUS.getTaiKhoanGhiNho();
-//    try {
-//        String[] arr = line.split("\\|");  // fix ở đây
-//        if (arr.length == 2) {
-//            ckbRemember.setSelected(true);
-//            txtUser.setText(arr[0].trim());
-//            txtPassword.setText(arr[1].trim());
-//            txtUser.requestFocus();
-//        }
-//    } catch (Exception e) {
-//        txtUser.setText("");
-//        txtPassword.setText("");
-//        txtUser.requestFocus();
-//    }
-//}
-
-
     private JLabel btnExit, btnLogin, btnForgot;
     private JTextField txtUser;
     private JPasswordField txtPassword;
@@ -62,7 +43,7 @@ public class DangNhapGUI extends JFrame {
 
         btnLogin = new JLabel(new ImageIcon("image/LoginUI/btn-login.png"));
         btnLogin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        btnLogin.setBounds(24, 513, 392, 55);
+        btnLogin.setBounds(35, 520, 370, 50);
 
         btnForgot = new JLabel(new ImageIcon("image/LoginUI/btn-forgot.png"));
         btnForgot.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -85,20 +66,11 @@ public class DangNhapGUI extends JFrame {
         txtPassword.setFont(fontTXT);
         txtPassword.setHorizontalAlignment(JTextField.LEFT);
         txtPassword.setBounds(36, 401, 370, 50);
-
-//        Main.changLNF("Nimbus");
-//        ckbRemember = new JCheckBox("Ghi nhớ đăng nhập");
-//        ckbRemember.setFont(fontTXT);
-//        ckbRemember.setOpaque(false);
-//        ckbRemember.setForeground(Color.white);
-//        ckbRemember.setBounds(28, 464, 290, 19);
-//        ckbRemember.setFocusPainted(false);
         Main.changLNF("Nimbus");
 
         pnMain.add(btnExit);
         pnMain.add(txtUser);
         pnMain.add(txtPassword);
-//        pnMain.add(ckbRemember);
         pnMain.add(btnLogin);
         pnMain.add(btnForgot);
 

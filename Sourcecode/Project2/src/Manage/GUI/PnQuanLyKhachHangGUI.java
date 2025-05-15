@@ -10,7 +10,6 @@ import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,160 +40,189 @@ public class PnQuanLyKhachHangGUI extends JPanel {
     DefaultTableModel dtmKhachHang;
 
     private void addControls() {
-        Font font = new Font("Times New Roman", Font.PLAIN, 20);
+        Font font = new Font("Times New Roman", Font.PLAIN, 14);
+        Font headerFont = new Font("Times New Roman", Font.BOLD, 18);
 
-        this.setLayout(new BorderLayout());
+        this.setLayout(new BorderLayout(10, 10));
         this.setBackground(colorPanel);
-        int w = 1030;
-        int h = 844;
+        this.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
 
-        /*
-        =========================================================================
-                                    PANEL KHÁCH HÀNG
-        =========================================================================
-         */
-        JPanel pnKhachHang = new TransparentPanel();
-        pnKhachHang.setLayout(new BoxLayout(pnKhachHang, BoxLayout.Y_AXIS));
+        // ==================== PANEL CHÍNH ====================
+        JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
+        mainPanel.setBackground(colorPanel);
 
-        JPanel pnTopKH = new TransparentPanel();
-        pnTopKH.setLayout(new BoxLayout(pnTopKH, BoxLayout.Y_AXIS));
+        // ==================== PANEL TIÊU ĐỀ ====================
+        JPanel pnTitle = new JPanel(new BorderLayout());
+        pnTitle.setBackground(colorPanel);
 
-        JPanel pnTitle = new TransparentPanel();
-        JLabel lblTitle = new JLabel("<html><h1>QUẢN LÝ KHÁCH HÀNG</h1></html>");
+        JLabel lblTitle = new JLabel("QUẢN LÝ KHÁCH HÀNG");
+        lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 24));
+        lblTitle.setBorder(BorderFactory.createEmptyBorder(0, 0, 15, 0));
+
         btnReset = new JButton(new ImageIcon("image/Refresh-icon.png"));
+        btnReset.setToolTipText("Làm mới");
         btnReset.setPreferredSize(new Dimension(40, 40));
-        pnTitle.add(lblTitle);
-        pnTitle.add(btnReset);
-        pnTopKH.add(pnTitle);
 
-        //======PANEL TEXT FIELD=======
-        JPanel pnTextField = new TransparentPanel();
-        pnTextField.setLayout(new BoxLayout(pnTextField, BoxLayout.Y_AXIS));
+        pnTitle.add(lblTitle, BorderLayout.WEST);
+        pnTitle.add(btnReset, BorderLayout.EAST);
 
-        JLabel lblMa, lblHo, lblTen, lblGioiTinh, lblTongChiTieu;
-        lblMa = new JLabel("Mã Khách hàng");
-        lblHo = new JLabel("Họ đệm");
-        lblTen = new JLabel("Tên");
-        lblGioiTinh = new JLabel("Giới tính");
-        lblTongChiTieu = new JLabel("Tổng chi tiêu");
+        mainPanel.add(pnTitle, BorderLayout.NORTH);
 
-        lblMa.setFont(font);
-        lblHo.setFont(font);
-        lblTen.setFont(font);
-        lblGioiTinh.setFont(font);
-        lblTongChiTieu.setFont(font);
+        // ==================== PANEL THÔNG TIN VÀ TÌM KIẾM ====================
+        JPanel pnTop = new JPanel();
+        pnTop.setLayout(new BoxLayout(pnTop, BoxLayout.Y_AXIS));
+        pnTop.setBackground(colorPanel);
 
-        txtMa = new JTextField(20);
+        // ==== Panel Thông tin khách hàng ====
+        JPanel pnInfo = new JPanel(new GridBagLayout());
+        pnInfo.setBackground(colorPanel);
+        pnInfo.setBorder(BorderFactory.createTitledBorder("Thông tin khách hàng"));
+        pnInfo.setPreferredSize(new Dimension(600, 180));
+
+        Font bigFont = new Font("Times New Roman", Font.PLAIN, 16);
+      
+
+        int row = 0;
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weighty = 1.0;
+
+        gbc.weightx = 0.1;
+        gbc.gridx = 0; gbc.gridy = row;
+        JLabel lblMaKH = new JLabel("Mã KH");
+        lblMaKH.setFont(bigFont);
+        pnInfo.add(lblMaKH, gbc);
+        gbc.gridx = 1; gbc.weightx = 0.35;
+        txtMa = new JTextField();
+        txtMa.setPreferredSize(new Dimension(220, 35));
+        txtMa.setFont(bigFont);
+        pnInfo.add(txtMa, gbc);
         txtMa.setEditable(false);
-        txtHo = new JTextField(20);
-        txtTen = new JTextField(20);
-        txtTongChiTieu = new JTextField(20);
-        txtTongChiTieu.setEditable(false);
+
+        gbc.weightx = 0.1;
+        gbc.gridx = 2;
+        JLabel lblHo = new JLabel("Họ đệm");
+        lblHo.setFont(bigFont);
+        pnInfo.add(lblHo, gbc);
+        gbc.gridx = 3; gbc.weightx = 0.2;
+        txtHo = new JTextField();
+        txtHo.setPreferredSize(new Dimension(120, 35));
+        txtHo.setFont(bigFont);
+        pnInfo.add(txtHo, gbc);
+
+        row++;
+        gbc.gridy = row; gbc.gridx = 0; gbc.weightx = 0.1;
+        JLabel lblTen = new JLabel("Tên");
+        lblTen.setFont(bigFont);
+        pnInfo.add(lblTen, gbc);
+        gbc.gridx = 1; gbc.weightx = 0.35;
+        txtTen = new JTextField();
+        txtTen.setPreferredSize(new Dimension(220, 35));
+        txtTen.setFont(bigFont);
+        pnInfo.add(txtTen, gbc);
+
+        gbc.gridx = 2; gbc.weightx = 0.1;
+        JLabel lblGioiTinh = new JLabel("Giới tính");
+        lblGioiTinh.setFont(bigFont);
+        pnInfo.add(lblGioiTinh, gbc);
+        gbc.gridx = 3; gbc.weightx = 0.2;
         cmbGioiTinh = new JComboBox<>();
         cmbGioiTinh.addItem("Chọn giới tính");
         cmbGioiTinh.addItem("Nam");
         cmbGioiTinh.addItem("Nữ");
+        cmbGioiTinh.setPreferredSize(new Dimension(100, 35));
+        cmbGioiTinh.setFont(bigFont);
+        pnInfo.add(cmbGioiTinh, gbc);
 
-        txtMa.setFont(font);
-        txtHo.setFont(font);
-        txtTen.setFont(font);
-        txtTongChiTieu.setFont(font);
-        cmbGioiTinh.setFont(font);
+        row++;
+        gbc.gridy = row; gbc.gridx = 0; gbc.weightx = 0.1;
+        JLabel lblTongChiTieu = new JLabel("Tổng chi tiêu");
+        lblTongChiTieu.setFont(bigFont);
+        pnInfo.add(lblTongChiTieu, gbc);
+        gbc.gridx = 1; gbc.weightx = 0.35;
+        txtTongChiTieu = new JTextField();
+        txtTongChiTieu.setPreferredSize(new Dimension(220, 30));
+        txtTongChiTieu.setFont(bigFont);
+        pnInfo.add(txtTongChiTieu, gbc);
+        txtTongChiTieu.setEditable(false);
 
-        JPanel pnMa = new TransparentPanel();
-        pnMa.add(lblMa);
-        pnMa.add(txtMa);
-        pnTextField.add(pnMa);
-
-        JPanel pnHo = new TransparentPanel();
-        pnHo.add(lblHo);
-        pnHo.add(txtHo);
-        pnTextField.add(pnHo);
-
-        JPanel pnTen = new TransparentPanel();
-        pnTen.add(lblTen);
-        pnTen.add(txtTen);
-        pnTextField.add(pnTen);
-
-        JPanel pnGioiTinh = new TransparentPanel();
-        pnGioiTinh.add(lblGioiTinh);
-        pnGioiTinh.add(cmbGioiTinh);
-        pnTextField.add(pnGioiTinh);
-
-        JPanel pnTongChiTieu = new TransparentPanel();
-        pnTongChiTieu.add(lblTongChiTieu);
-        pnTongChiTieu.add(txtTongChiTieu);
-        pnTextField.add(pnTongChiTieu);
-
-        Dimension lblSize = lblMa.getPreferredSize();
-        lblMa.setPreferredSize(lblSize);
-        lblHo.setPreferredSize(lblSize);
-        lblTen.setPreferredSize(lblSize);
-        lblGioiTinh.setPreferredSize(lblSize);
-        lblTongChiTieu.setPreferredSize(lblSize);
-        cmbGioiTinh.setPreferredSize(txtHo.getPreferredSize());
-
-        pnTopKH.add(pnTextField);
-        pnKhachHang.add(pnTopKH);
-
-        //===============PANEL BUTTON=============
-        JPanel pnButton = new TransparentPanel();
+        gbc.gridx = 2; gbc.gridwidth = 2;
+        JPanel pnButton = new JPanel(new FlowLayout(FlowLayout.LEFT, 15, 0));
         btnThem = new JButton("Thêm");
-        btnSua = new JButton("Lưu");
+        btnSua = new JButton(  "Sửa");
         btnXoa = new JButton("Xoá");
-
-//        btnThem.setIcon(new ImageIcon("image/add-icon.png"));
-//        btnSua.setIcon(new ImageIcon("image/Pencil-icon.png"));
-//        btnXoa.setIcon(new ImageIcon("image/delete-icon.png"));
-        Font fontButton = new Font("Times New Roman", Font.PLAIN, 16);
-
-        btnThem.setFont(fontButton);
-        btnSua.setFont(fontButton);
-        btnXoa.setFont(fontButton);
-        pnKhachHang.add(pnButton);
-
+        btnThem.setPreferredSize(new Dimension(120, 30));
+        btnSua.setPreferredSize(new Dimension(120, 30));
+        btnXoa.setPreferredSize(new Dimension(120, 30));
+        btnThem.setFont(bigFont);
+        btnSua.setFont(bigFont);
+        btnXoa.setFont(bigFont);
         pnButton.add(btnThem);
         pnButton.add(btnSua);
         pnButton.add(btnXoa);
+        pnButton.setBackground(colorPanel);
+        pnInfo.add(pnButton, gbc);
 
-//        btnThem.setIcon(new ImageIcon("image/add-icon.png"));
-//        btnSua.setIcon(new ImageIcon("image/Pencil-icon.png"));
-//        btnXoa.setIcon(new ImageIcon("image/delete-icon.png"));
-        Dimension btnSize = btnThem.getPreferredSize();
-        btnThem.setPreferredSize(btnSize);
-        btnSua.setPreferredSize(btnSize);
-        btnXoa.setPreferredSize(btnSize);
+        // ==== Panel Tìm kiếm ====
+        JPanel pnSearch = new JPanel(new GridBagLayout());
+        pnSearch.setBackground(colorPanel);
+        pnSearch.setBorder(BorderFactory.createTitledBorder("Tìm kiếm"));
+        pnSearch.setPreferredSize(new Dimension(700, 130));
+        GridBagConstraints gbcSearch = new GridBagConstraints();
+        gbcSearch.insets = new Insets(8, 8, 8, 8);
+        gbcSearch.anchor = GridBagConstraints.WEST;
+        gbcSearch.fill = GridBagConstraints.HORIZONTAL;
 
-        //====PANEL SEARCH=====
-        JPanel pnTimKiem = new TransparentPanel();
-        JLabel lblTimKiem = new JLabel("Từ khoá tìm");
-        lblTimKiem.setFont(font);
-        txtTukhoa = new JTextField(20);
-        txtTukhoa.setFont(font);
-        pnTimKiem.add(lblTimKiem);
-        pnTimKiem.add(txtTukhoa);
-        pnKhachHang.add(pnTimKiem);
+        // Dòng từ khoá
+        gbcSearch.gridx = 0; gbcSearch.gridy = 0; gbcSearch.gridwidth = 1;
+        JLabel lblTuKhoa = new JLabel("Từ khoá:");
+        lblTuKhoa.setFont(bigFont);
+        pnSearch.add(lblTuKhoa, gbcSearch);
+        gbcSearch.gridx = 1; gbcSearch.gridwidth = 3;
+        txtTukhoa = new JTextField();
+        txtTukhoa.setPreferredSize(new Dimension(350, 36));
+        txtTukhoa.setFont(bigFont);
+        pnSearch.add(txtTukhoa, gbcSearch);
 
-        JPanel pnTimGioiHan = new TransparentPanel();
-        JLabel lblMin = new JLabel("Chi tiêu từ:");
-        JLabel lblMax = new JLabel("đến:");
-        lblMin.setFont(font);
-        lblMax.setFont(font);
-        txtMinchiTieu = new JTextField(5);
-        txtMinchiTieu.setHorizontalAlignment(JTextField.CENTER);
-        txtMaxChiTieu = new JTextField(5);
-        txtMaxChiTieu.setHorizontalAlignment(JTextField.CENTER);
-        txtMinchiTieu.setFont(font);
-        txtMaxChiTieu.setFont(font);
-        btnTim = new JButton(new ImageIcon("image/Search-icon.png"));
-        btnTim = new JButton(new ImageIcon("image/Search-icon.png"));
-        pnTimGioiHan.add(lblMin);
-        pnTimGioiHan.add(txtMinchiTieu);
-        pnTimGioiHan.add(lblMax);
-        pnTimGioiHan.add(txtMaxChiTieu);
-        pnTimGioiHan.add(btnTim);
-        pnKhachHang.add(pnTimGioiHan);
-        //=========================TABLE=====================
+        // Dòng chi tiêu từ -> đến
+        gbcSearch.gridy = 1; gbcSearch.gridx = 0; gbcSearch.gridwidth = 1;
+        JLabel lblChiTieuTu = new JLabel("Chi tiêu từ:");
+        lblChiTieuTu.setFont(bigFont);
+        pnSearch.add(lblChiTieuTu, gbcSearch);
+        gbcSearch.gridx = 1;
+        txtMinchiTieu = new JTextField();
+        txtMinchiTieu.setPreferredSize(new Dimension(140, 36));
+        txtMinchiTieu.setFont(bigFont);
+        pnSearch.add(txtMinchiTieu, gbcSearch);
+        gbcSearch.gridx = 2;
+        JLabel lblDen = new JLabel("đến:");
+        lblDen.setFont(bigFont);
+        pnSearch.add(lblDen, gbcSearch);
+        gbcSearch.gridx = 3;
+        txtMaxChiTieu = new JTextField();
+        txtMaxChiTieu.setPreferredSize(new Dimension(140, 36));
+        txtMaxChiTieu.setFont(bigFont);
+        pnSearch.add(txtMaxChiTieu, gbcSearch);
+
+        // Nút tìm kiếm cùng dòng với input
+        gbcSearch.gridx = 4; gbcSearch.gridy = 1; gbcSearch.gridwidth = 1;
+        btnTim = createButton("", "image/Search-icon.png");
+        btnTim.setToolTipText("Tìm kiếm");
+        btnTim.setPreferredSize(new Dimension(100, 36));
+        btnTim.setFont(bigFont);
+        pnSearch.add(btnTim, gbcSearch);
+
+        // ==== Đặt 2 panel theo chiều dọc ====
+        pnInfo.setAlignmentX(Component.LEFT_ALIGNMENT);
+        pnSearch.setAlignmentX(Component.LEFT_ALIGNMENT);
+        pnTop.add(pnInfo);
+        pnTop.add(Box.createRigidArea(new Dimension(0, 10)));
+        pnTop.add(pnSearch);
+
+        mainPanel.add(pnTop, BorderLayout.CENTER);
+
+        // ==================== PANEL BẢNG DỮ LIỆU ====================
         dtmKhachHang = new DefaultTableModel();
         dtmKhachHang.addColumn("Mã KH");
         dtmKhachHang.addColumn("Họ đệm");
@@ -203,16 +231,59 @@ public class PnQuanLyKhachHangGUI extends JPanel {
         dtmKhachHang.addColumn("Tổng chi tiêu");
 
         tblKhachHang = new MyTable(dtmKhachHang);
+        tblKhachHang.setRowHeight(30);
+        tblKhachHang.setFont(font);
+        tblKhachHang.getTableHeader().setFont(headerFont);
 
         JScrollPane scrtblKhachHang = new JScrollPane(tblKhachHang);
-
-        this.add(pnKhachHang, BorderLayout.NORTH);
-        this.add(scrtblKhachHang, BorderLayout.CENTER);
+        scrtblKhachHang.setBorder(BorderFactory.createTitledBorder("Danh sách khách hàng"));
+        
+        mainPanel.add(scrtblKhachHang, BorderLayout.SOUTH);
+        this.add(mainPanel);
 
         loadDataLenTableKhachHang();
     }
 
+    private JPanel createFieldPanel(String label, Component field) {
+        JPanel panel = new JPanel(new GridBagLayout());
+        panel.setBackground(colorPanel);
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(2, 2, 2, 2); // Padding nhỏ
+        gbc.anchor = GridBagConstraints.WEST;
+
+        JLabel lbl = new JLabel(label);
+        lbl.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 0.3;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel.add(lbl, gbc);
+
+        field.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        if (field instanceof JTextField || field instanceof JComboBox) {
+            field.setPreferredSize(new Dimension(200, 30));
+        }
+
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.weightx = 0.7;
+        panel.add(field, gbc);
+
+        return panel;
+    }
+
+    private JButton createButton(String text, String iconPath) {
+        JButton button = new JButton(text, new ImageIcon(iconPath));
+        button.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        button.setPreferredSize(new Dimension(120, 40));
+        button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        return button;
+    }
+
+    // Các phương thức còn lại giữ nguyên như cũ
     private void addEvents() {
+        // Giữ nguyên toàn bộ phần addEvents() như cũ
         btnReset.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -2,25 +2,50 @@ package Main;
 
 import MyCustom.MyConnect;
 import Manage.GUI.DangNhapGUI;
+import javax.swing.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ * Class chính của ứng dụng
+ */
 public class Main {
+    private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 
+    /**
+     * Phương thức main của ứng dụng
+     * @param args Tham số dòng lệnh
+     */
     public static void main(String[] args) {
-        new MyConnect();
-
-        changLNF("Windows");
-        DangNhapGUI login = new DangNhapGUI();
-        login.showWindow();
+        try {
+            new MyConnect();
+            changLNF("Windows");
+            DangNhapGUI login = new DangNhapGUI();
+            login.showWindow();
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Lỗi khởi động ứng dụng", e);
+            JOptionPane.showMessageDialog(null, 
+                "Không thể khởi động ứng dụng. Vui lòng kiểm tra lại kết nối database.",
+                "Lỗi",
+                JOptionPane.ERROR_MESSAGE);
+        }
     }
 
+    /**
+     * Thay đổi giao diện của ứng dụng
+     * @param nameLNF Tên giao diện cần thay đổi
+     */
     public static void changLNF(String nameLNF) {
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if (nameLNF.equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | 
+                IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            LOGGER.log(Level.WARNING, "Không thể thay đổi giao diện", ex);
         }
     }
 }

@@ -10,6 +10,12 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class MainQuanLyGUI extends JFrame {
+ // Màu chủ đạo
+private final Color DARK_BLUE = new Color(0x2C3E50);      
+private final Color MEDIUM_BLUE = new Color(0x2980B9);     
+
+private final Color GRAY = new Color(0xBDC3C7);           // Viền, placeholder
+
 
     public MainQuanLyGUI() {
         this.setTitle("Phần mềm quản lý bán hàng");
@@ -37,9 +43,9 @@ public class MainQuanLyGUI extends JFrame {
     PnQuanLyThongKeGUI thongKePanel;
 
     JLabel btnClose, btnMinimize, lblBanHang, lblKhuyenMai, lblSanPham, lblNhanVien, lblKhachHang, lblThongKe;
-    final Color clLeftItem = new Color(179, 163, 137);
-    final Color clLeftItemHover = new Color(209, 185, 143);
-    final Color clLeftItemSelected = new Color(232, 195, 115);
+    final Color clLeftItem = DARK_BLUE;
+    final Color clLeftItemHover = GRAY;
+    final Color clLeftItemSelected = MEDIUM_BLUE;
     ArrayList<JLabel> listMenuLeft;
     CardLayout cardMenuLeftGroup = new CardLayout();
 
@@ -52,14 +58,9 @@ public class MainQuanLyGUI extends JFrame {
         JPanel pnMain = new JPanel();
         pnMain.setLayout(new BorderLayout());
 
-        /*
-        ============================================================
-                                TITLE BAR
-        ============================================================
-         */
         pnTitle = new JPanel(null);
         pnTitle.setPreferredSize(new Dimension(width, 46));
-        pnTitle.setBackground(new Color(159, 145, 121));
+        pnTitle.setBackground(MEDIUM_BLUE);
 
         btnDoiMatKhau = new JLabel(new ImageIcon("image/ManagerUI/icons8_gear_46px.png"));
         btnDoiMatKhau.setToolTipText("Đổi mật khẩu");
@@ -82,11 +83,7 @@ public class MainQuanLyGUI extends JFrame {
         pnTitle.add(btnClose);
 
         pnMain.add(pnTitle, BorderLayout.NORTH);
-        /*
-        ============================================================
-                                SIDE BAR MENU
-        ============================================================
-         */
+
         pnMenuLeft = new JPanel();
         pnMenuLeft.setPreferredSize(new Dimension(250, height - pnTitle.getHeight()));
         pnMenuLeft.setBackground(clLeftItem);
@@ -126,11 +123,6 @@ public class MainQuanLyGUI extends JFrame {
 
         pnMain.add(pnMenuLeft, BorderLayout.WEST);
 
-        /*
-        ============================================================
-                                CARD PANEL           
-        ============================================================
-         */
         pnCard = new JPanel(cardMenuLeftGroup);
 
         pnBanHang = new JPanel();
@@ -147,7 +139,6 @@ public class MainQuanLyGUI extends JFrame {
         pnCard.add(pnKhachHang, "5");
         pnCard.add(pnThongKe, "6");
 
-        //==========ADD PANEL BÁN HÀNG + KHUYẾN MÃI (Ko phân quyền)==========
         banHangPanel = new PnQuanLyBanHangGUI();
         pnBanHang.setLayout(new BorderLayout());
         pnBanHang.add(banHangPanel, BorderLayout.CENTER);
@@ -156,7 +147,6 @@ public class MainQuanLyGUI extends JFrame {
         pnKhuyenMai.setLayout(new BorderLayout());
         pnKhuyenMai.add(khuyenMaiPanel, BorderLayout.CENTER);
 
-        //======XỬ LÝ PHÂN QUYỀN=======
         PhanQuyenBUS phanQuyenBUS = new PhanQuyenBUS();
         PhanQuyen quyen = phanQuyenBUS.getPhanQuyen(DangNhapBUS.quyenTK);
 
@@ -188,11 +178,6 @@ public class MainQuanLyGUI extends JFrame {
             lblThongKe.setVisible(true);
         }
         pnMain.add(pnCard);
-        /*
-        ============================================================
-                                CARD PANEL           
-        ============================================================
-         */
         con.add(pnMain);
     }
 

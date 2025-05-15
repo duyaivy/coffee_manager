@@ -45,36 +45,10 @@ public class DangNhapBUS {
                 new MyDialog("Không tìm thấy quyền của tài khoản!", MyDialog.ERROR_DIALOG);
                 return null;
             }
-//            xuLyGhiNhoDangNhap(user, password, selected);
             new MyDialog("Đăng nhập thành công!", MyDialog.SUCCESS_DIALOG);
         }
         return account;
     }
-
-//    public String getTaiKhoanGhiNho() {
-//        try {
-//            FileInputStream fis = new FileInputStream("remember.dat");
-//            BufferedReader br = new BufferedReader(new InputStreamReader(fis));
-//            String line = br.readLine();
-//            br.close();
-//            return line;
-//        }catch (Exception e) {
-//        }
-//        return "";
-//    }
-
-//    private void xuLyGhiNhoDangNhap(String user, String password, boolean selected) {
-//        try {
-//            if (!selected) {
-//                user = "";
-//                password = "";
-//            }
-//            FileWriter fw = new FileWriter("remember.dat");
-//            fw.write(user + " | " + password);
-//            fw.close();
-//        } catch (Exception e) {
-//        }
-//    }
 
     private int kiemTraDangNhap(String user, String password) {
         user = user.replaceAll("\\s+", "");
