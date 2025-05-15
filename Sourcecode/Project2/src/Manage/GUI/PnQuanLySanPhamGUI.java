@@ -189,10 +189,10 @@ public class PnQuanLySanPhamGUI extends JPanel {
         btnXoa.setFont(fontButton);
         btnTim.setFont(fontButton);
        
-        btnThem.setIcon(new ImageIcon("image/add-icon.png"));
-        btnSua.setIcon(new ImageIcon("image/Pencil-icon.png"));
-        btnXoa.setIcon(new ImageIcon("image/delete-icon.png"));
-        btnTim.setIcon(new ImageIcon("image/Search-icon.png"));
+//        btnThem.setIcon(new ImageIcon("image/add-icon.png"));
+//        btnSua.setIcon(new ImageIcon("image/Pencil-icon.png"));
+//        btnXoa.setIcon(new ImageIcon("image/delete-icon.png"));
+//        btnTim.setIcon(new ImageIcon("image/Search-icon.png"));
         
         JPanel pnTimKiem = new TransparentPanel();
         JLabel lblTimKiem = new JLabel("Từ khoá tìm");

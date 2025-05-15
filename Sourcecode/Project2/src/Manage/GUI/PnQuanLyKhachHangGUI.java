@@ -143,9 +143,9 @@ public class PnQuanLyKhachHangGUI extends JPanel {
         btnSua = new JButton("Lưu");
         btnXoa = new JButton("Xoá");
 
-        btnThem.setIcon(new ImageIcon("image/add-icon.png"));
-        btnSua.setIcon(new ImageIcon("image/Pencil-icon.png"));
-        btnXoa.setIcon(new ImageIcon("image/delete-icon.png"));
+//        btnThem.setIcon(new ImageIcon("image/add-icon.png"));
+//        btnSua.setIcon(new ImageIcon("image/Pencil-icon.png"));
+//        btnXoa.setIcon(new ImageIcon("image/delete-icon.png"));
         Font fontButton = new Font("Times New Roman", Font.PLAIN, 16);
 
         btnThem.setFont(fontButton);
@@ -157,9 +157,9 @@ public class PnQuanLyKhachHangGUI extends JPanel {
         pnButton.add(btnSua);
         pnButton.add(btnXoa);
 
-        btnThem.setIcon(new ImageIcon("image/add-icon.png"));
-        btnSua.setIcon(new ImageIcon("image/Pencil-icon.png"));
-        btnXoa.setIcon(new ImageIcon("image/delete-icon.png"));
+//        btnThem.setIcon(new ImageIcon("image/add-icon.png"));
+//        btnSua.setIcon(new ImageIcon("image/Pencil-icon.png"));
+//        btnXoa.setIcon(new ImageIcon("image/delete-icon.png"));
         Dimension btnSize = btnThem.getPreferredSize();
         btnThem.setPreferredSize(btnSize);
         btnSua.setPreferredSize(btnSize);
