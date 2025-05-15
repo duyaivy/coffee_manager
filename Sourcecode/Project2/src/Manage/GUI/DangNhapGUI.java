@@ -20,36 +20,40 @@ public class DangNhapGUI extends JFrame {
         this.setUndecorated(true);
         this.setBackground(new Color(0, 0, 0, 0));
         addControls();
-        xuLyTaiKhoanDaGhiNho();
+//        xuLyTaiKhoanDaGhiNho();
         addEvents();
     }
 
-    private void xuLyTaiKhoanDaGhiNho() {
-        DangNhapBUS dangNhapBUS = new DangNhapBUS();
-        String line = dangNhapBUS.getTaiKhoanGhiNho();
-        try {
-            String[] arr = line.split(" | ");
-            ckbRemember.setSelected(true);
-            txtUser.setText(arr[0]);
-            txtPassword.setText(arr[2]);
-            txtUser.requestFocus();
-        } catch (Exception e) {
-            txtUser.setText("");
-            txtPassword.setText("");
-            txtUser.requestFocus();
-        }
-    }
+//   private void xuLyTaiKhoanDaGhiNho() {
+//    DangNhapBUS dangNhapBUS = new DangNhapBUS();
+//    String line = dangNhapBUS.getTaiKhoanGhiNho();
+//    try {
+//        String[] arr = line.split("\\|");  // fix ở đây
+//        if (arr.length == 2) {
+//            ckbRemember.setSelected(true);
+//            txtUser.setText(arr[0].trim());
+//            txtPassword.setText(arr[1].trim());
+//            txtUser.requestFocus();
+//        }
+//    } catch (Exception e) {
+//        txtUser.setText("");
+//        txtPassword.setText("");
+//        txtUser.requestFocus();
+//    }
+//}
+
 
     private JLabel btnExit, btnLogin, btnForgot;
     private JTextField txtUser;
     private JPasswordField txtPassword;
     private JPanel pnMain;
-    private JCheckBox ckbRemember;
+//    private JCheckBox ckbRemember;
 
     private void addControls() {
         Container con = getContentPane();
 
         pnMain = new ImagePanel("image/LoginUI/background-login.png");
+
         pnMain.setLayout(null);
 
         btnExit = new JLabel(new ImageIcon("image/LoginUI/btn-close.png"));
@@ -66,7 +70,7 @@ public class DangNhapGUI extends JFrame {
 
         Font fontTXT = new Font("Times New Roman", Font.BOLD, 18);
         txtUser = new JTextField();
-        txtUser.setBackground(new Color(0, 0, 0, 0f));
+        txtUser.setBackground(Color.BLACK);
         txtUser.setBorder(BorderFactory.createEmptyBorder());
         txtUser.setForeground(Color.WHITE);
         txtUser.setFont(fontTXT);
@@ -75,26 +79,26 @@ public class DangNhapGUI extends JFrame {
 
         txtPassword = new JPasswordField();
         txtPassword.setEchoChar('•');
-        txtPassword.setBackground(new Color(0, 0, 0, 0f));
+        txtPassword.setBackground(Color.BLACK);;
         txtPassword.setBorder(BorderFactory.createEmptyBorder());
         txtPassword.setForeground(Color.WHITE);
         txtPassword.setFont(fontTXT);
         txtPassword.setHorizontalAlignment(JTextField.LEFT);
         txtPassword.setBounds(36, 401, 370, 50);
 
-        Main.changLNF("Nimbus");
-        ckbRemember = new JCheckBox("Ghi nhớ đăng nhập");
-        ckbRemember.setFont(fontTXT);
-        ckbRemember.setOpaque(false);
-        ckbRemember.setForeground(Color.white);
-        ckbRemember.setBounds(28, 464, 290, 19);
-        ckbRemember.setFocusPainted(false);
+//        Main.changLNF("Nimbus");
+//        ckbRemember = new JCheckBox("Ghi nhớ đăng nhập");
+//        ckbRemember.setFont(fontTXT);
+//        ckbRemember.setOpaque(false);
+//        ckbRemember.setForeground(Color.white);
+//        ckbRemember.setBounds(28, 464, 290, 19);
+//        ckbRemember.setFocusPainted(false);
         Main.changLNF("Nimbus");
 
         pnMain.add(btnExit);
         pnMain.add(txtUser);
         pnMain.add(txtPassword);
-        pnMain.add(ckbRemember);
+//        pnMain.add(ckbRemember);
         pnMain.add(btnLogin);
         pnMain.add(btnForgot);
 
@@ -220,17 +224,18 @@ public class DangNhapGUI extends JFrame {
         new MyDialog("liên hệ Admin!", MyDialog.INFO_DIALOG);
     }
 
-    private void xuLyDangNhap() {
-        DangNhapBUS dangNhapBUS = new DangNhapBUS();
-        TaiKhoan tk = dangNhapBUS.getTaiKhoanDangNhap(txtUser.getText(),
-                txtPassword.getText(), ckbRemember.isSelected());
-        if (tk != null) {
-            this.dispose();
-            MainQuanLyGUI gui = new MainQuanLyGUI();
-            this.dispose();
-            gui.showWindow();
-        }
+   private void xuLyDangNhap() {
+    DangNhapBUS dangNhapBUS = new DangNhapBUS();
+    TaiKhoan tk = dangNhapBUS.getTaiKhoanDangNhap(
+        txtUser.getText(),
+        txtPassword.getText()
+    );
+    if (tk != null) {
+        this.dispose();
+        MainQuanLyGUI gui = new MainQuanLyGUI();
+        gui.showWindow();
     }
+}
 
     public void showWindow() {
         Image icon = Toolkit.getDefaultToolkit().getImage("image/ManagerUI/icon-app.png");
