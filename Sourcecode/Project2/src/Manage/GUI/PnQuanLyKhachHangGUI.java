@@ -171,25 +171,34 @@ public class PnQuanLyKhachHangGUI extends JPanel {
 
         loadDataLenTableKhachHang();
     }
+private JPanel createFieldPanel(String label, Component field) {
+    JPanel panel = new JPanel(new GridBagLayout());
+    panel.setBackground(colorPanel);
 
-    private JPanel createFieldPanel(String label, Component field) {
-        JPanel panel = new JPanel(new BorderLayout(5, 5));
-        panel.setBackground(colorPanel);
-        
-        JLabel lbl = new JLabel(label);
-        lbl.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        panel.add(lbl, BorderLayout.WEST);
-        
-        field.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        if (field instanceof JTextField) {
-            ((JTextField)field).setPreferredSize(new Dimension(200, 30));
-        } else if (field instanceof JComboBox) {
-            ((JComboBox<?>)field).setPreferredSize(new Dimension(200, 30));
-        }
-        panel.add(field, BorderLayout.CENTER);
-        
-        return panel;
+    GridBagConstraints gbc = new GridBagConstraints();
+    gbc.insets = new Insets(2, 2, 2, 2); // Padding nhỏ
+    gbc.anchor = GridBagConstraints.WEST;
+
+    JLabel lbl = new JLabel(label);
+    lbl.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+    gbc.gridx = 0;
+    gbc.gridy = 0;
+    gbc.weightx = 0.3;
+    gbc.fill = GridBagConstraints.HORIZONTAL;
+    panel.add(lbl, gbc);
+
+    field.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+    if (field instanceof JTextField || field instanceof JComboBox) {
+        field.setPreferredSize(new Dimension(200, 30));
     }
+
+    gbc.gridx = 1;
+    gbc.gridy = 0;
+    gbc.weightx = 0.7;
+    panel.add(field, gbc);
+
+    return panel;
+}
 
     private JButton createButton(String text, String iconPath) {
         JButton button = new JButton(text, new ImageIcon(iconPath));

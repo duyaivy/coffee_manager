@@ -8,10 +8,10 @@ public class MyConnect {
 
     public static Connection conn = null;
 
-    private final String serverName = "127.0.0.1";
+ private final String serverName = "127.0.0.1";
     private final String dbName = "coffeeshop";
     private final String userName = "root";
-    private final String password = "thaonhi@2408";
+    private final String password = "Password@123";
 
     public MyConnect() {
         String strConnect = "jdbc:mysql://" + serverName + ":3306/" + dbName
