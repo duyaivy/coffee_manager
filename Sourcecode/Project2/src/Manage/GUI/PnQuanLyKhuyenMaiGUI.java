@@ -40,7 +40,7 @@ public class PnQuanLyKhuyenMaiGUI extends JPanel {
     JDateChooser dateBD, dateKT;
 
     private void addControls() {
-        Font font = new Font("Times New Roman", Font.PLAIN, 24);
+        Font font = new Font("Times New Roman", Font.PLAIN, 20);
         this.setLayout(new BorderLayout());
         this.setBackground(colorPanel);
 
@@ -150,8 +150,8 @@ public class PnQuanLyKhuyenMaiGUI extends JPanel {
         btnSua = new JButton("Sửa");
         btnThem.setFont(font);
         btnSua.setFont(font);
-        btnThem.setIcon(new ImageIcon("image/add-icon.png"));
-        btnSua.setIcon(new ImageIcon("image/Pencil-icon.png"));
+//        btnThem.setIcon(new ImageIcon("image/add-icon.png"));
+//        btnSua.setIcon(new ImageIcon("image/Pencil-icon.png"));
         pnButton.add(btnThem);
         pnButton.add(btnSua);
         pnMain.add(pnButton);

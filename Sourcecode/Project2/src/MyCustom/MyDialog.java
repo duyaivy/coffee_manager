@@ -27,7 +27,6 @@ public class MyDialog extends JDialog {
     public final static int WARNING_DIALOG = 4;
 
     public MyDialog(String content, int type) {
-//        Main.changLNF("Windows");
         this.content = content;
         this.type = type;
         addControls();

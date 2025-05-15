@@ -213,8 +213,7 @@ public class DlgQuanLyLoai extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnSuaActionPerformed
 
-    private void txtTenLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenLoaiActionPerformed
-        // TODO add your handling code here:
+    private void txtTenLoaiActionPerformed(java.awt.event.ActionEvent evt) {
     }//GEN-LAST:event_txtTenLoaiActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

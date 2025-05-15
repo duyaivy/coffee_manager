@@ -3,25 +3,26 @@ package Manage.GUI;
 import Manage.BUS.ThongKeBUS;
 import Manage.DTO.ThongKe;
 import MyCustom.TransparentPanel;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.category.DefaultCategoryDataset;
-
 import javax.swing.*;
-
 import java.awt.*;
-
 import static Main.Main.changLNF;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 
 public class PnQuanLyThongKeGUI extends JPanel {
+    private ThongKeBUS thongKeBUS = new ThongKeBUS();
+    private final Color colorPanel = new Color(56, 56, 56);
+    private JLabel lblThongKeThucDon, lblThongKeKhachHang, lblThongKeNhanVien, lblThongKeDoanhThu;
+    private JLabel lblDoanhThuQuy1, lblDoanhThuQuy2, lblDoanhThuQuy3, lblDoanhThuQuy4, lblTongDoanhThu;
+    private JButton btnView, btnBack;
+    private JComboBox<Integer> cmbNam;
+    private CardLayout cardLayoutThongKe = new CardLayout();
+    private JPanel pnMain;
+    private JLabel lblMon1, lblMon2, lblMon3, lblMon4, lblMon5;
+    private JLabel lblSoLuong1, lblSoLuong2, lblSoLuong3, lblSoLuong4, lblSoLuong5;
+    private JPanel pnThongKeChiTiet;
+    private DecimalFormat dcf = new DecimalFormat("###,###");
 
     public PnQuanLyThongKeGUI() {
         changLNF("Windows");
@@ -29,25 +30,12 @@ public class PnQuanLyThongKeGUI extends JPanel {
         addEvents();
     }
 
-    ThongKeBUS thongKeBUS = new ThongKeBUS();
-    final Color colorPanel = new Color(56, 56, 56);
-    JLabel lblThongKeThucDon, lblThongKeKhachHang, lblThongKeNhanVien, lblThongKeDoanhThu;
-    JLabel lblDoanhThuQuy1, lblDoanhThuQuy2, lblDoanhThuQuy3, lblDoanhThuQuy4, lblTongDoanhThu;
-    JButton btnView, btnBack;
-    JComboBox<Integer> cmbNam;
-    CardLayout cardLayoutThongKe = new CardLayout();
-    JPanel pnMain;
-    JLabel lblMon1, lblMon2, lblMon3, lblMon4, lblMon5, lblSoLuong1, lblSoLuong2, lblSoLuong3, lblSoLuong4, lblSoLuong5;
-    private ChartPanel chartPanel;
-    JPanel pnThongKeChiTiet, pnChart;
- 
     private void addControls() {
         this.setLayout(new BorderLayout());
         this.setBackground(colorPanel);
         int w = 1030;
         int h = 844;
 
-        //========================================
         pnMain = new TransparentPanel();
         pnMain.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         pnMain.setLayout(cardLayoutThongKe);
@@ -155,9 +143,6 @@ public class PnQuanLyThongKeGUI extends JPanel {
 
         pnMain.add(pnThongKeTong, "1");
 
-        // ==============================================
-        //              THỐNG KÊ CHI TIẾT
-        // ==============================================
         pnThongKeChiTiet = new TransparentPanel(null);
 
         btnBack = new JButton(new ImageIcon("image/icons8_undo_40px.png"));
@@ -229,16 +214,6 @@ public class PnQuanLyThongKeGUI extends JPanel {
         pnThongKeChiTiet.add(lblSoLuong4);
         pnThongKeChiTiet.add(lblSoLuong5);
 
-        //========BIỂU ĐỒ CỘT=============
-        pnChart = new TransparentPanel();
-        pnChart.setBounds(0, 398, 1030, 441);
-
-        chartPanel = new ChartPanel(createChart());
-        chartPanel.setPreferredSize(new Dimension(1030, 441));
-
-        pnChart.add(chartPanel);
-        //================================
-        pnThongKeChiTiet.add(pnChart);
         pnMain.add(pnThongKeChiTiet, "2");
 
         this.add(pnMain, BorderLayout.CENTER);
@@ -246,57 +221,18 @@ public class PnQuanLyThongKeGUI extends JPanel {
     }
 
     private void addEvents() {
-        btnView.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                hienThiThongKe();
-                veLaiChart();
-                cardLayoutThongKe.show(pnMain, "2");
-            }
-        });
-        btnBack.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                hienThiThongKe();
-                cardLayoutThongKe.show(pnMain, "1");
-            }
-        });
-        cmbNam.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                hienThiThongKe();
-            }
+        btnView.addActionListener(e -> {
+            hienThiThongKe();
+            cardLayoutThongKe.show(pnMain, "2");
         });
         
+        btnBack.addActionListener(e -> {
+            hienThiThongKe();
+            cardLayoutThongKe.show(pnMain, "1");
+        });
+        
+        cmbNam.addActionListener(e -> hienThiThongKe());
     }
-
-    private void veLaiChart() {
-        pnChart.removeAll();
-
-        chartPanel = new ChartPanel(createChart());
-        chartPanel.setPreferredSize(new Dimension(1030, 441));
-
-        pnChart.add(chartPanel);
-    }
-
-    private JFreeChart createChart() {
-        JFreeChart barChart = ChartFactory.createBarChart(
-                "Doanh thu năm " + Calendar.getInstance().get(Calendar.YEAR),
-                "Tháng", "Doanh thu",
-                createDataset(), PlotOrientation.VERTICAL, false, false, false);
-        return barChart;
-    }
-
-    private CategoryDataset createDataset() {
-        final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        for (int i = 1; i <= 12; i++) {
-            double value = thongKeBUS.getDoanhThuThang(i, Calendar.getInstance().get(Calendar.YEAR));
-            dataset.addValue(value, "Doanh thu", i + "");
-        }
-        return dataset;
-    }
-
-    private DecimalFormat dcf = new DecimalFormat("###,###");
 
     private void hienThiThongKe() {
         ThongKe thongKe = thongKeBUS.thongKe(Integer.parseInt(cmbNam.getSelectedItem() + ""));
@@ -320,5 +256,4 @@ public class PnQuanLyThongKeGUI extends JPanel {
         lblSoLuong4.setText("" + thongKe.getTopSanPhamBanChay().get(3).getSoLuong());
         lblSoLuong5.setText("" + thongKe.getTopSanPhamBanChay().get(4).getSoLuong());
     }
-
 }
