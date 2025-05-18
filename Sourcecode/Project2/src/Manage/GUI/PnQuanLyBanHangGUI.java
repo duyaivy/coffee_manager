@@ -88,7 +88,6 @@ public class PnQuanLyBanHangGUI extends JPanel {
         =========================================================================
          */
         JPanel pnTop = new TransparentPanel();
-        //<editor-fold defaultstate="collapsed" desc="Panel Tab Bán hàng & Hoá đơn">
         Font font = new Font("Times New Roman", Font.PLAIN, 20);
         pnTop.setPreferredSize(new Dimension(w, 41));
         pnTop.setLayout(null);

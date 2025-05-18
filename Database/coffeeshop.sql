@@ -3,7 +3,8 @@
 -- Host: 127.0.0.1    Database: coffeeshop
 -- ------------------------------------------------------
 -- Server version	8.0.41
-use coffeshop;
+CREATE DATABASE IF NOT EXISTS coffeeshop;
+USE coffeeshop;
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -42,7 +43,7 @@ CREATE TABLE `cthoadon` (
 
 LOCK TABLES `cthoadon` WRITE;
 /*!40000 ALTER TABLE `cthoadon` DISABLE KEYS */;
-INSERT INTO `cthoadon` VALUES (1,1,2,20000,40000),(1,2,1,40000,40000),(1,3,1,40000,40000),(1,4,1,40000,40000),(1,7,2,10000,20000),(2,1,2,20000,40000),(2,3,1,40000,40000),(2,6,1,30000,30000),(2,7,2,10000,20000),(3,3,1,40000,40000),(3,4,1,40000,40000),(3,5,2,40000,80000),(3,7,10,10000,100000),(4,6,1,30000,30000),(4,7,1,10000,10000),(5,3,1,50000,50000),(5,6,1,20000,20000),(5,7,1,30000,30000),(5,8,5,50000,150000),(6,4,1,30000,30000),(6,7,1,30000,30000),(6,9,6,40000,120000),(6,16,3,30000,30000),(7,8,1,50000,50000),(8,5,1,50000,50000);
+INSERT INTO `cthoadon` VALUES (1,1,2,20000,40000),(1,2,1,40000,40000),(1,3,1,40000,40000),(1,4,1,40000,40000),(1,7,2,10000,20000),(2,1,2,20000,40000),(2,3,1,40000,40000),(2,6,1,30000,30000),(2,7,2,10000,20000),(4,6,1,30000,30000),(4,7,1,10000,10000),(5,3,1,50000,50000),(5,6,1,20000,20000),(5,7,1,30000,30000),(5,8,5,50000,150000),(6,4,1,30000,30000),(6,7,1,30000,30000),(6,9,6,40000,120000),(6,16,3,30000,30000),(7,8,1,50000,50000),(8,5,1,50000,50000);
 /*!40000 ALTER TABLE `cthoadon` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -102,7 +103,7 @@ CREATE TABLE `hoadon` (
 
 LOCK TABLES `hoadon` WRITE;
 /*!40000 ALTER TABLE `hoadon` DISABLE KEYS */;
-INSERT INTO `hoadon` VALUES (1,1,1,'2025-05-09',180000,'Đã thanh toán'),(2,2,2,'2025-05-09',130000,'Đã thanh toán'),(3,3,3,'2025-05-09',260000,'Đã thanh toán'),(4,4,0,'2025-05-10',32000,'Đã thanh toán'),(5,1,0,'2025-05-10',250000,'Đã thanh toán'),(6,3,0,'2025-05-10',168000,'Đã thanh toán'),(7,3,0,'2025-05-10',40000,'Đã thanh toán'),(8,1,0,'2025-05-09',50000,'Đã thanh toán');
+INSERT INTO `hoadon` VALUES (1,1,1,'2025-05-09',180000,'Đã thanh toán'),(2,2,2,'2025-05-09',130000,'Đã thanh toán'),(4,4,0,'2025-05-10',32000,'Đã thanh toán'),(5,1,0,'2025-05-10',250000,'Đã thanh toán'),(6,3,0,'2025-05-10',168000,'Đã thanh toán'),(7,3,0,'2025-05-10',40000,'Đã thanh toán'),(8,1,0,'2025-05-09',50000,'Đã thanh toán');
 /*!40000 ALTER TABLE `hoadon` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -172,9 +173,8 @@ CREATE TABLE `nhanvien` (
   `GioiTinh` varchar(3) NOT NULL,
   `ChucVu` varchar(255) NOT NULL,
   PRIMARY KEY (`MaNV`),
-  KEY `chucvu_ibfk_1` (`ChucVu`),
-  CONSTRAINT `chucvu_ibfk_1` FOREIGN KEY (`ChucVu`) REFERENCES `taikhoan` (`Quyen`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `chucvu_ibfk_1` (`ChucVu`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -183,7 +183,7 @@ CREATE TABLE `nhanvien` (
 
 LOCK TABLES `nhanvien` WRITE;
 /*!40000 ALTER TABLE `nhanvien` DISABLE KEYS */;
-INSERT INTO `nhanvien` VALUES (0,'Admin','','','Quản trị'),(1,'Ngô Quang','Vinh','Nam','Quản lý'),(2,'Đỗ Minh','Quân','Nam','Nhân viên'),(3,'Nguyễn Hải','Sơn','Nam','Nhân viên');
+INSERT INTO `nhanvien` VALUES (0,'Admin','','','Quản trị'),(1,'Ngô Quang','Vinh','Nam','Quản lý'),(2,'Đỗ Minh','Quân','Nam','Nhân viên'),(5,'Lê Thuỳ','Na','Nữ','Nhân viên');
 /*!40000 ALTER TABLE `nhanvien` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -262,7 +262,7 @@ CREATE TABLE `taikhoan` (
   KEY `taikhoan_ibfk_2` (`Quyen`),
   CONSTRAINT `taikhoan_ibfk_1` FOREIGN KEY (`MaNV`) REFERENCES `nhanvien` (`MaNV`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `taikhoan_ibfk_2` FOREIGN KEY (`Quyen`) REFERENCES `phanquyen` (`Quyen`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -271,7 +271,7 @@ CREATE TABLE `taikhoan` (
 
 LOCK TABLES `taikhoan` WRITE;
 /*!40000 ALTER TABLE `taikhoan` DISABLE KEYS */;
-INSERT INTO `taikhoan` VALUES (0,'admin','admin','Quản trị',1),(1,'ql01','ql01','Quản lý',1),(2,'nv01','nv01','Nhân viên',1),(3,'nv6886','nv6886','Nhân viên',1);
+INSERT INTO `taikhoan` VALUES (0,'admin','admin','Quản trị',1),(1,'ql01','ql01','Quản lý',1),(2,'nv01','nv01','Nhân viên',1),(5,'nv02','nv02','Nhân viên',1);
 /*!40000 ALTER TABLE `taikhoan` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -284,4 +284,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-13 10:54:59
+-- Dump completed on 2025-05-18 22:14:02
