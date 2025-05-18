@@ -150,8 +150,6 @@ public class PnQuanLyKhuyenMaiGUI extends JPanel {
         btnSua = new JButton("Sửa");
         btnThem.setFont(font);
         btnSua.setFont(font);
-//        btnThem.setIcon(new ImageIcon("image/add-icon.png"));
-//        btnSua.setIcon(new ImageIcon("image/Pencil-icon.png"));
         pnButton.add(btnThem);
         pnButton.add(btnSua);
         pnMain.add(pnButton);

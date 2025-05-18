@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class MainQuanLyGUI extends JFrame {
- // Màu chủ đạo
+ 
 private final Color DARK_BLUE = new Color(0x2C3E50);      
 private final Color MEDIUM_BLUE = new Color(0x2980B9);     
 
-private final Color GRAY = new Color(0xBDC3C7);           // Viền, placeholder
+private final Color GRAY = new Color(0xBDC3C7);          
 
 
     public MainQuanLyGUI() {
@@ -119,10 +119,7 @@ private final Color GRAY = new Color(0xBDC3C7);           // Viền, placeholder
 
         lblBanHang.setBackground(clLeftItemSelected);
         lblBanHang.setVisible(true);
-        lblKhuyenMai.setVisible(true);
-
         pnMain.add(pnMenuLeft, BorderLayout.WEST);
-
         pnCard = new JPanel(cardMenuLeftGroup);
 
         pnBanHang = new JPanel();
@@ -143,9 +140,6 @@ private final Color GRAY = new Color(0xBDC3C7);           // Viền, placeholder
         pnBanHang.setLayout(new BorderLayout());
         pnBanHang.add(banHangPanel, BorderLayout.CENTER);
 
-        khuyenMaiPanel = new PnQuanLyKhuyenMaiGUI();
-        pnKhuyenMai.setLayout(new BorderLayout());
-        pnKhuyenMai.add(khuyenMaiPanel, BorderLayout.CENTER);
 
         PhanQuyenBUS phanQuyenBUS = new PhanQuyenBUS();
         PhanQuyen quyen = phanQuyenBUS.getPhanQuyen(DangNhapBUS.quyenTK);
@@ -155,6 +149,11 @@ private final Color GRAY = new Color(0xBDC3C7);           // Viền, placeholder
             pnSanPham.setLayout(new BorderLayout());
             pnSanPham.add(sanPhamPanel, BorderLayout.CENTER);
             lblSanPham.setVisible(true);
+            
+            khuyenMaiPanel = new PnQuanLyKhuyenMaiGUI();
+            pnKhuyenMai.setLayout(new BorderLayout());
+            pnKhuyenMai.add(khuyenMaiPanel, BorderLayout.CENTER);
+            lblKhuyenMai.setVisible(true);
         }
 
         if (quyen.getQlNhanVien() == 1) {

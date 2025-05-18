@@ -76,7 +76,6 @@ public class NhanVienDAO {
         boolean result = false;
         PreparedStatement pre = null;
         try {
-            // Kiểm tra nhân viên có tồn tại không
             if (getNhanVien(maNV) == null) {
                 return false;
             }
@@ -128,25 +127,5 @@ public class NhanVienDAO {
             }
         }
         return result;
-    }
-
-    public boolean nhapExcel(NhanVien nv) {
-        try {
-            // Xóa dữ liệu cũ
-            String sqlDelete = "DELETE FROM NhanVien";
-            PreparedStatement preDelete = MyConnect.conn.prepareStatement(sqlDelete);
-            preDelete.executeUpdate();
-            
-            // Thêm dữ liệu mới
-            String sqlInsert = "INSERT INTO NhanVien(Ho, Ten, GioiTinh, ChucVu) VALUES(?, ?, ?, ?)";
-            PreparedStatement preInsert = MyConnect.conn.prepareStatement(sqlInsert);
-            preInsert.setString(1, nv.getHo());
-            preInsert.setString(2, nv.getTen());
-            preInsert.setString(3, nv.getGioiTinh());
-            preInsert.setString(4, nv.getChucVu());
-            return preInsert.executeUpdate() > 0;
-        } catch (SQLException ex) {
-            return false;
-        }
     }
 }

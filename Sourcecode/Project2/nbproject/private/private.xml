@@ -3,31 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/D:/QUOCDUY/JAVA/repos/coffee_manager/coffee_manager/Sourcecode/Project2/src/Main/Main.java</file>
-            <file>file:/D:/QUOCDUY/JAVA/repos/coffee_manager/coffee_manager/Sourcecode/Project2/src/MyCustom/MyConnect.java</file>
-=======
-            <file>file:/D:/HOC_KY3/JAVA_DO_AN/coffee_manager/Sourcecode/Project2/src/MyCustom/MyConnect.java</file>
-            <file>file:/D:/HOC_KY3/JAVA_DO_AN/coffee_manager/Sourcecode/Project2/src/Manage/GUI/PnQuanLyNhanVienGUI.java</file>
-            <file>file:/D:/HOC_KY3/JAVA_DO_AN/coffee_manager/Sourcecode/Project2/src/Manage/GUI/DangNhapGUI.java</file>
-            <file>file:/D:/HOC_KY3/JAVA_DO_AN/coffee_manager/Sourcecode/Project2/src/Manage/BUS/DangNhapBUS.java</file>
-            <file>file:/D:/HOC_KY3/JAVA_DO_AN/coffee_manager/Sourcecode/Project2/src/Manage/DAO/DangNhapDAO.java</file>
-            <file>file:/D:/HOC_KY3/JAVA_DO_AN/coffee_manager/Sourcecode/Project2/src/Manage/GUI/DlgTimKhach.java</file>
-            <file>file:/D:/HOC_KY3/JAVA_DO_AN/coffee_manager/Sourcecode/Project2/src/Manage/GUI/DlgTimMaGiam.java</file>
-            <file>file:/D:/HOC_KY3/JAVA_DO_AN/coffee_manager/Sourcecode/Project2/src/Manage/GUI/MainQuanLyGUI.java</file>
-            <file>file:/D:/HOC_KY3/JAVA_DO_AN/coffee_manager/Sourcecode/Project2/src/Manage/GUI/PnQuanLyBanHangGUI.java</file>
-            <file>file:/D:/HOC_KY3/JAVA_DO_AN/coffee_manager/Sourcecode/Project2/src/Manage/GUI/PnQuanLyKhachHangGUI.java</file>
-            <file>file:/D:/HOC_KY3/JAVA_DO_AN/coffee_manager/Sourcecode/Project2/src/Manage/GUI/PnQuanLyKhuyenMaiGUI.java</file>
-            <file>file:/D:/HOC_KY3/JAVA_DO_AN/coffee_manager/Sourcecode/Project2/src/Manage/BUS/CTHoaDonBUS.java</file>
-            <file>file:/D:/HOC_KY3/JAVA_DO_AN/coffee_manager/Sourcecode/Project2/src/Manage/DAO/CTHoaDonDAO.java</file>
-            <file>file:/D:/HOC_KY3/JAVA_DO_AN/coffee_manager/Sourcecode/Project2/src/Manage/DTO/CTHoaDon.java</file>
-            <file>file:/D:/HOC_KY3/JAVA_DO_AN/coffee_manager/Sourcecode/Project2/src/Manage/GUI/DlgDoiMatKhau.java</file>
-            <file>file:/D:/HOC_KY3/JAVA_DO_AN/coffee_manager/Sourcecode/Project2/src/Manage/GUI/DlgCapTaiKhoan.java</file>
-            <file>file:/D:/HOC_KY3/JAVA_DO_AN/coffee_manager/Sourcecode/Project2/src/Manage/GUI/DlgQuyen_MatKhau.java</file>
-            <file>file:/D:/HOC_KY3/JAVA_DO_AN/coffee_manager/Sourcecode/Project2/src/Manage/GUI/DlgThemKhachHang.java</file>
-            <file>file:/D:/HOC_KY3/JAVA_DO_AN/coffee_manager/Sourcecode/Project2/src/Manage/GUI/PnQuanLySanPhamGUI.java</file>
-            <file>file:/D:/HOC_KY3/JAVA_DO_AN/coffee_manager/Sourcecode/Project2/src/Main/Main.java</file>
->>>>>>> 7cda7862ab10e87aad11fc85fa41478939522335
+            <file>file:/D:/QUOCDUY/JAVA/repos/FIX/coffee_manager/Sourcecode/Project2/src/Manage/BUS/DangNhapBUS.java</file>
+            <file>file:/D:/QUOCDUY/JAVA/repos/FIX/coffee_manager/Sourcecode/Project2/src/Manage/GUI/PnQuanLyKhachHangGUI.java</file>
+            <file>file:/D:/QUOCDUY/JAVA/repos/FIX/coffee_manager/Sourcecode/Project2/src/Manage/GUI/PnQuanLyThongKeGUI.java</file>
+            <file>file:/D:/QUOCDUY/JAVA/repos/FIX/coffee_manager/Sourcecode/Project2/src/Manage/GUI/PnQuanLySanPhamGUI.java</file>
+            <file>file:/D:/QUOCDUY/JAVA/repos/FIX/coffee_manager/Sourcecode/Project2/src/Manage/GUI/PnQuanLyNhanVienGUI.java</file>
+            <file>file:/D:/QUOCDUY/JAVA/repos/FIX/coffee_manager/Sourcecode/Project2/src/Manage/GUI/MainQuanLyGUI.java</file>
+            <file>file:/D:/QUOCDUY/JAVA/repos/FIX/coffee_manager/Sourcecode/Project2/src/Manage/GUI/DangNhapGUI.java</file>
+            <file>file:/D:/QUOCDUY/JAVA/repos/FIX/coffee_manager/Sourcecode/Project2/src/Manage/GUI/PnQuanLyBanHangGUI.java</file>
         </group>
     </open-files>
 </project-private>
